@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Callback\FacebookMessengerCallback;
+use GuzzleHttp\Client;
 use Silex\Application;
 
 /**
@@ -30,8 +32,8 @@ class ServicesLoader
     public function bindServicesIntoContainer()
     {
         $this->app['facebook.messenger.service'] = function() {
-            return new Services\FacebookMessengerService(
-                $this->app['db'],
+            return new FacebookMessengerCallback(
+                new Client(),
                 $this->app['fb.access_token'],
                 $this->app['fb.fanpage_id']
             );
