@@ -14,6 +14,7 @@ class QueryParser
     private static $services = [
         'weather' => ['weather', 'temperature', 'hot', 'cold'],
         'time'    => ['time', 'current'],
+        'carpark' => ['parking', 'park', 'car'],
     ];
 
     /**

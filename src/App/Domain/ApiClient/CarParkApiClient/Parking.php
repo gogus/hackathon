@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mike
- * Date: 3/11/2017
- * Time: 9:54 PM
- */
 
 namespace App\Domain\ApiClient\WeatherApiClient\Response;
-
 
 /**
  * Class Parking

@@ -1,12 +1,6 @@
 <?php
-namespace App\Domain\ApiClient\CarParkApiClient;
 
-/**
- * Created by PhpStorm.
- * User: Mike
- * Date: 3/11/2017
- * Time: 9:06 PM
- */
+namespace App\Domain\ApiClient\CarParkApiClient;
 
 use App\Domain\ApiClient\ApiClient;
 use GuzzleHttp\Client;
@@ -15,10 +9,12 @@ class CarParkApiClient implements ApiClient
 {
     protected $guzzleClient;
     protected $url;
+
     /**
      * CarParkApiClient constructor.
-     * @par
-am $guzzleClient
+     *
+     * @param string $url
+     * @param Client $guzzleClient
      */
     public function __construct($url, Client $guzzleClient)
     {
@@ -37,5 +33,4 @@ am $guzzleClient
 
         return $jsonRes;
     }
-
 }

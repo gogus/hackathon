@@ -1,23 +1,23 @@
 <?php
 
 namespace App\Domain\ApiClient\CarParkApiClient\Response;
-use App\Domain\ApiClient\WeatherApiClient\Response\Parking;
 
 /**
  * Some of the data was skipped intentionally.
  */
+
+use App\Domain\ApiClient\WeatherApiClient\Response\Parking;
+
 /**
  * Class Response
  * @package App\Domain\ApiClient\CarParkApiClient\Response
  */
 class Response
 {
-
     /**
-     * @var array
+     * @var Parking[]
      */
-    protected static $parkings = [];
-
+    protected $parkings = [];
 
     /**
      * @param array $data
@@ -26,9 +26,21 @@ class Response
      */
     public static function fromArray(array $data)
     {
+        $response = new self();
+
         foreach ($data as $row)
         {
-            static::$parkings = Parking::fromArray($row);
+            $response->parkings[] = new Parking($row);
         }
+
+        return $response;
+    }
+
+    /**
+     * @return Parking[]
+     */
+    public function getParkings()
+    {
+        return $this->parkings;
     }
 }
