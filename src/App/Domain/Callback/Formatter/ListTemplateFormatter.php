@@ -20,6 +20,10 @@ class ListTemplateFormatter implements FormatterInterface
                 [
                     'title' => 'Weather ' . $response->getCity()->getName() . ' ' . $response->getMain()->getTemperature(),
                     'subtitle' => 'Humidity ' . $response->getMain()->getHumidity() . ', ' . 'Wind speed ' . $response->getWind()->getSpeed()
+                ],
+                [
+                    'title' => 'Weather ' . $response->getCity()->getName() . ' ' . $response->getMain()->getTemperature(),
+                    'subtitle' => 'Humidity ' . $response->getMain()->getHumidity() . ', ' . 'Wind speed ' . $response->getWind()->getSpeed()
                 ]
             ];
 

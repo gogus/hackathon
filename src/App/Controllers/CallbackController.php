@@ -60,8 +60,6 @@ class CallbackController
 
             foreach ($messages as $message) {
                 $response = $this->queryParserService->queryParse($message['message']['text']);
-                file_put_contents('test2', var_export($response, true));
-
                 $formatted = $this->responseFormatterFactory->format($response);
                 $this->facebookMessengerCallback->sendMessage($message['sender']['id'], $formatted);
             }
