@@ -31,17 +31,17 @@ class CallbackController
     /**
      * @param FacebookMessengerCallback $facebookMessengerCallback
      * @param QueryParser               $queryParserService
-     * @param FormatterFactory          $responseFormatter
+     * @param FormatterFactory          $responseFormatterFactory
      */
     public function __construct(
         FacebookMessengerCallback $facebookMessengerCallback,
         QueryParser $queryParserService,
-        FormatterFactory $responseFormatter
+        FormatterFactory $responseFormatterFactory
     )
     {
         $this->facebookMessengerCallback = $facebookMessengerCallback;
         $this->queryParserService = $queryParserService;
-        $this->responseFormatter = $responseFormatter;
+        $this->responseFormatterFactory = $responseFormatterFactory;
     }
 
     /**
