@@ -1,0 +1,22 @@
+{
+	"name": "whatever/api",
+	"type": "library",
+	"description": "Whatever REST API",
+	"license": "MIT",
+	"authors": [{
+		"name": "Whatever Team",
+		"email": "whatever@email-in-progress.cc"
+	}],
+	"require": {
+		"silex/silex": "~2.0",
+		"monolog/monolog": "~1.11",
+		"doctrine/dbal": "~2.5",
+		"nesbot/Carbon": "~1.21",
+		"euskadi31/cors-service-provider": "~1.0"
+	},
+	"autoload": {
+		"psr-0": {
+			"App": "src/"
+		}
+	}
+}

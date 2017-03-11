@@ -1,0 +1,5 @@
+.idea
+.git
+.storage/*
+.DS_Store
+vendor/
