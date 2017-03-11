@@ -33,7 +33,7 @@ class ServicesLoader
             return new Services\FacebookMessengerService(
                 $this->app['db'],
                 $this->app['fb.access_token'],
-                $this->app['fb_fanpage_id']
+                $this->app['fb.fanpage_id']
             );
         };
     }
