@@ -25,6 +25,9 @@ class CarParkApiClient implements ApiClient
     public function makeCall($param = null)
     {
         $res = $this->guzzleClient->get($this->url)->getBody()->getContents();
+
+        file_put_contents('test33', var_export($res, true));
+        
         $jsonRes = json_decode($res, true);
 
         if (!$jsonRes) {
