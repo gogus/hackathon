@@ -31,7 +31,7 @@ class ServicesLoader
      */
     public function bindServicesIntoContainer()
     {
-        $this->app['facebook.messenger.service'] = function() {
+        $this->app['facebook.messenger.service'] = function () {
             return new FacebookMessengerCallback(
                 new Client(),
                 $this->app['fb.access_token'],
@@ -44,6 +44,12 @@ class ServicesLoader
                 $this->app['weather.base_uri'],
                 $this->app['weather.timeout'],
                 new Client()
+            );
+        };
+
+        $this->app['query.parser.service'] = function () {
+            return new Services\QueryParserService(
+                $this->app['db']
             );
         };
     }

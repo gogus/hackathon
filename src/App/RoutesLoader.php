@@ -38,7 +38,10 @@ class RoutesLoader
             return new Controllers\IndexController();
         };
         $this->app['callback.controller'] = function() {
-            return new Controllers\CallbackController($this->app['facebook.messenger.service']);
+            return new Controllers\CallbackController(
+                $this->app['facebook.messenger.service'],
+                $this->app['query.parser.service']
+            );
         };
     }
 
