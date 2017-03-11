@@ -1,25 +1,23 @@
 <?php
 
-namespace App\Domain\ApiClient\WeatherApiClient\Response;
+namespace App\Domain\ApiClient\CarParkApiClient\Response;
+use App\Domain\ApiClient\WeatherApiClient\Response\Parking;
 
 /**
- * Response in Openweathermap API format: https://openweathermap.org/current#current_JSON
- *
  * Some of the data was skipped intentionally.
+ */
+/**
+ * Class Response
+ * @package App\Domain\ApiClient\CarParkApiClient\Response
  */
 class Response
 {
 
-    protected $parkingName;
-    protected $parkingTotalSpaces;
-    protected $parkingFreeSpaces;
-    protected $parkingAddress;
+    /**
+     * @var array
+     */
+    protected static $parkings = [];
 
-
-    public function __construct()
-    {
-
-    }
 
     /**
      * @param array $data
@@ -28,6 +26,9 @@ class Response
      */
     public static function fromArray(array $data)
     {
-
+        foreach ($data as $row)
+        {
+            static::$parkings = Parking::fromArray($row);
+        }
     }
 }
