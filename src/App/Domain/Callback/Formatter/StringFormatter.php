@@ -12,6 +12,7 @@ class StringFormatter implements FormatterInterface
         {
             return sprintf(
                 "The temperature in %s is %d°C, the wind is %d m/s, humidity is %d%%, pressure is %d hPa",
+                $response->getCity()->getName(),
                 $response->getMain()->getTemperature(),
                 $response->getWind()->getSpeed(),
                 $response->getMain()->getHumidity(),
