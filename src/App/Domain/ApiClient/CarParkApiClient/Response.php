@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\ApiClient\CarParkApiClient\Response;
+namespace App\Domain\ApiClient\CarParkApiClient;
 
 /**
  * Some of the data was skipped intentionally.

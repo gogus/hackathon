@@ -2,7 +2,7 @@
 
 namespace App\Domain\Service;
 
-use App\Domain\ApiClient\CarParkApiClient\Response\Response;
+use App\Domain\ApiClient\CarParkApiClient\Response;
 use App\Domain\ApiClient\ApiClient;
 
 class CarParkApiService implements ServiceInterface
