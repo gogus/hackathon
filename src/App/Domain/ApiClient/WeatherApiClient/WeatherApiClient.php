@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Service\ApiClient\WeatherApiClient;
+namespace App\Domain\ApiClient\WeatherApiClient;
 
 use App\Domain\ApiClient\ApiClient;
 use App\Domain\ApiClient\WeatherApiClient\Response\Response;
@@ -39,5 +39,4 @@ class WeatherApiClient implements ApiClient
     {
        return Response::fromArray(json_decode($this->guzzleClient($this->url,$this->timeout)));
     }
-
 }

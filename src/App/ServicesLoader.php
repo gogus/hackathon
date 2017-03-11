@@ -4,11 +4,11 @@ namespace App;
 
 use App\Domain\Callback\FacebookMessengerCallback;
 use App\Domain\QueryParser;
-use App\Domain\Service\ApiClient\WeatherApiClient\WeatherApiClient;
 use App\Domain\Service\TimeService;
 use GuzzleHttp\Client;
 use Silex\Application;
 use App\Domain\Service\WeatherApiService;
+use App\Domain\ApiClient\WeatherApiClient\WeatherApiClient;
 
 /**
  * Class ServicesLoader
