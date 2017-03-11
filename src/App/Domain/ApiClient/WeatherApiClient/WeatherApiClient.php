@@ -3,7 +3,6 @@
 namespace App\Domain\ApiClient\WeatherApiClient;
 
 use App\Domain\ApiClient\ApiClient;
-use App\Domain\ApiClient\WeatherApiClient\Response\Response;
 use Exception;
 use GuzzleHttp\Client;
 
@@ -45,6 +44,6 @@ class WeatherApiClient implements ApiClient
             throw new Exception('message:' . var_export($res,true));
         }
 
-       return Response::fromArray($jsonRes);
+       return $jsonRes;
     }
 }

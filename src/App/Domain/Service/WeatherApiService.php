@@ -1,14 +1,7 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Mike
- * Date: 3/11/2017
- * Time: 7:35 PM
- */
-
 namespace App\Domain\Service;
 
-
+use App\Domain\ApiClient\WeatherApiClient\Response\Response;
 use App\Domain\ApiClient\WeatherApiClient\Response\Weather;
 use App\Domain\ApiClient\WeatherApiClient\WeatherApiClient;
 
@@ -40,7 +33,8 @@ class WeatherApiService implements ServiceInterface
     public function ask($query = null)
     {
         $data = $this->apiWeatherClient->makeCall();
-        $dataEntity = Weather::fromArray($data);
+        $dataEntity = Response::fromArray($data);
+
         return $dataEntity->getDescription();
     }
 }
