@@ -5,9 +5,9 @@ namespace App\Domain\Service;
 interface ServiceInterface
 {
     /**
-     * @param QueryInterface $query
+     * @param string $query
      *
      * @return AnswerInterface
      */
-    public function ask(QueryInterface $query);
+    public function ask($query);
 }

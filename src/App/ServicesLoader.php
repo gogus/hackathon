@@ -36,5 +36,11 @@ class ServicesLoader
                 $this->app['fb.fanpage_id']
             );
         };
+
+        $this->app['query.parser.service'] = function() {
+            return new Services\QueryParserService(
+                $this->app['db']
+            );
+        };
     }
 }
