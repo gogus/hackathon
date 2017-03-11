@@ -25,13 +25,25 @@ class IndexController
      */
     public function messengerHookAction()
     {
-        $challenge = $_REQUEST['hub_challenge'];
-        $verify_token = $_REQUEST['hub_verify_token'];
+        $input = json_decode(file_get_contents('php://input'), true);
 
-        if ($verify_token === 'luxbot') {
-            return new Response($challenge);
+        foreach ($input['entry']['messaging'] as $message) {
+            $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=EAAJ4pzDROJwBANhEhVUnhZCpAE8VaKGwSu9wCsCAQM8Bpew2THlE0klfHraRGmiiY9NXc5ZAjb9gwsHaJZAuZBozUREVXXhew4dCfDLZCoXZBFqY2tXCsp35jXqn5DeDwLPXN1jiOZCkKsmppRY1qE0kZBpohdEUKYRbsvLIXtkBwwZDZD';
+            $ch = curl_init($url);
+            $jsonData = '{
+             "recipient":{
+                "id":"'.$message['recipient']['id'].'"
+             },
+             "message":{
+                "text":"Whatever!"
+             }
+            }';
+
+            $jsonDataEncoded = $jsonData;
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+            $result = curl_exec($ch);
         }
-
-        return new Response('bad');
     }
 }
