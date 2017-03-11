@@ -8,6 +8,7 @@ use App\Domain\Service\ApiClient\WeatherApiClient\WeatherApiClient;
 use App\Domain\Service\TimeService;
 use GuzzleHttp\Client;
 use Silex\Application;
+use App\Domain\Service\WeatherApiService;
 
 /**
  * Class ServicesLoader
@@ -59,7 +60,7 @@ class ServicesLoader
         };
 
         $this->app['service.weather'] = function () {
-            // todo add weather service
+            return new WeatherApiService($this->app['api.client.weather']);
         };
     }
 }
