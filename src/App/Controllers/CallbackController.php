@@ -21,7 +21,7 @@ class CallbackController
      */
     public function __construct(FacebookMessengerCallback $facebookMessengerCallback)
     {
-        $this->facebookMessengerService = $facebookMessengerCallback;
+        $this->facebookMessengerCallback = $facebookMessengerCallback;
     }
 
     /**
