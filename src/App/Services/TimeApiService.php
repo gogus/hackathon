@@ -9,7 +9,7 @@ use App\Domain\Service\QueryInterface;
  *
  * @package App\Services
  */
-class QueryParserService implements \App\Domain\Service\ServiceInterface
+class TimeApiService implements \App\Domain\Service\ServiceInterface
 {
 
     /**
