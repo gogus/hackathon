@@ -38,5 +38,13 @@ class ServicesLoader
                 $this->app['fb.fanpage_id']
             );
         };
+
+        $this->app['api.client.wather'] = function () {
+            return new \App\Domain\Service\ApiClientService\Weather(
+                $this->app['weather.base_uri'],
+                $this->app['weather.timeout'],
+                new Client()
+            );
+        };
     }
 }

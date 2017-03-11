@@ -9,3 +9,6 @@ $app['db.options'] = array(
   'driver' => 'pdo_sqlite',
   'path' => realpath(ROOT_PATH . '/app.db'),
 );
+
+
+$app['api.weather'] = 'https://api.tfl.lu/v1/Weather';

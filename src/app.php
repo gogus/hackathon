@@ -10,6 +10,8 @@ use App\ServicesLoader;
 use App\RoutesLoader;
 use Carbon\Carbon;
 
+use GuzzleHttp\Client;
+
 date_default_timezone_set('Europe/Luxembourg');
 
 //accepting JSON
@@ -49,5 +51,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
     $app['monolog']->addError($e->getTraceAsString());
     return new JsonResponse(array("statusCode" => $code, "message" => $e->getMessage(), "stacktrace" => $e->getTraceAsString()));
 });
+
+$app->register(new GuzzleHttp\Client([]));
 
 return $app;
