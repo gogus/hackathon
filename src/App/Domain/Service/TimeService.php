@@ -2,7 +2,7 @@
 
 namespace App\Domain\Service;
 
-class TimeApiService implements ServiceInterface
+class TimeService implements ServiceInterface
 {
     public function ask($query)
     {

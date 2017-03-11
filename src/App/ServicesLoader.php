@@ -5,6 +5,7 @@ namespace App;
 use App\Domain\Callback\FacebookMessengerCallback;
 use App\Domain\QueryParser;
 use App\Domain\Service\ApiClient\WeatherApiClient\WeatherApiClient;
+use App\Domain\Service\TimeService;
 use GuzzleHttp\Client;
 use Silex\Application;
 
@@ -41,7 +42,7 @@ class ServicesLoader
             );
         };
 
-        $this->app['api.client.wather'] = function () {
+        $this->app['api.client.weather'] = function () {
             return new WeatherApiClient(
                 $this->app['weather.base_uri'],
                 $this->app['weather.timeout'],
@@ -50,7 +51,15 @@ class ServicesLoader
         };
 
         $this->app['query.parser.service'] = function () {
-            return new QueryParser();
+            return new QueryParser($this->app);
+        };
+
+        $this->app['service.time'] = function () {
+            return new TimeService();
+        };
+
+        $this->app['service.weather'] = function () {
+            // todo add weather service
         };
     }
 }

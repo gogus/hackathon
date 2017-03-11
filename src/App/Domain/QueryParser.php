@@ -2,6 +2,8 @@
 
 namespace App\Domain;
 
+use Silex\Application;
+
 class QueryParser
 {
     const MESSAGE_NOT_UNDERSTOOD = 'Huh! what do you mean?';
@@ -11,8 +13,16 @@ class QueryParser
      */
     private static $services = [
         'weather' => ['weather', 'temperature', 'hot', 'cold'],
-        'timeApi' => ['time', 'current']
+        'time'    => ['time', 'current'],
     ];
+
+    /**
+     * @param Application $app
+     */
+    public function __construct(Application $app)
+    {
+        $this->app = $app;
+    }
 
     /**
      * @param string $query
@@ -27,9 +37,7 @@ class QueryParser
             foreach ($service as $word) {
                 $word = strtolower($word);
                 if (in_array($word, $words)) {
-                    $serviceClass = '\App\Domain\\Service\\' . ucfirst($serviceName). 'Service';
-
-                    return (new $serviceClass())->ask($query);
+                    return $this->app['service.' . $serviceName]->ask($query);
                 }
             }
         }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Test\Domain\ApiClient\WeatherApiClient\Response;
+namespace App\Test\Unit\Domain\ApiClient\WeatherApiClient\Response;
 
 use App\Domain\ApiClient\WeatherApiClient\Response\Response;
 use PHPUnit\Framework\TestCase;
