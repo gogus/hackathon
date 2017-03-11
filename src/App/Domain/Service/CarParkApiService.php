@@ -26,6 +26,8 @@ class CarParkApiService implements ServiceInterface
     public function ask($query = null)
     {
         $data = $this->apiCarparkClient->makeCall();
+        file_put_contents('test334', var_export($data['features'], true));
+
         $dataEntity = Response::fromArray($data['features']);
 
         return $dataEntity;
