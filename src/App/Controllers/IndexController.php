@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class IndexController
@@ -34,8 +35,9 @@ class IndexController
         }
 
         if ($hub_verify_token === $verify_token) {
-            echo $challenge;
-            die;
+            return new Response($challenge);
         }
+
+        return new Response();
     }
 }
