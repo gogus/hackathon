@@ -16,7 +16,7 @@ class QueryParserService
      */
     private static $services = [
         'weather' => ['weather', 'temperature', 'hot', 'cold'],
-        'time' => ['time', 'current']
+        'timeApi' => ['time', 'current']
     ];
 
     /**
@@ -30,7 +30,7 @@ class QueryParserService
             foreach ($service as $word) {
                 $word = strtolower($word);
                 if (in_array($word, $words)) {
-                    $serviceClass = '\App\Services\\' . $serviceName;
+                    $serviceClass = '\App\Services\\' . $serviceName. 'Service';
 
                     return (new $serviceClass())->ask($query);
                 }
