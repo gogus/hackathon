@@ -19,6 +19,7 @@ class GenericFormatter implements FormatterInterface
                 [
                     'title' => 'Weather ' . $response->getCity()->getName() . ' ' . $response->getMain()->getTemperature(),
                     'subtitle' => 'Humidity ' . $response->getMain()->getHumidity() . ', ' . 'Wind speed ' . $response->getWind()->getSpeed(),
+                    'image_url' => 'http://icons.iconarchive.com/icons/webalys/kameleon.pics/512/Cloudy-icon.png',
                     'buttons' => [
                         [
                             'type' => 'web_url',
