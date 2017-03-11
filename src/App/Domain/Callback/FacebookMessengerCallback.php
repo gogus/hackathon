@@ -46,7 +46,7 @@ class FacebookMessengerCallback
         ];
 
         file_put_contents('test', var_export($data, true));
-        
+
         $this->client->post(
             'https://graph.facebook.com/v2.6/me/messages?access_token=' . $this->accessToken,
             [

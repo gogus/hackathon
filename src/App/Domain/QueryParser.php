@@ -6,7 +6,7 @@ use Silex\Application;
 
 class QueryParser
 {
-    const MESSAGE_NOT_UNDERSTOOD = 'Huh! what do you mean?';
+    const MESSAGE_NOT_UNDERSTOOD = 'Huh! What do you mean?';
 
     /**
      * @var array
