@@ -45,6 +45,8 @@ class IndexController
                 curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
                 $result = curl_exec($ch);
+                file_put_contents('test', $result);
+                file_put_contents('test2', $message);
             }
         }
 
