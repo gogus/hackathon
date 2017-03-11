@@ -2,7 +2,7 @@
 
 namespace App\Domain\Callback\Formatter;
 
-use App\Domain\ApiClient\CarParkApiClient\Response\Response as CarparkResponse;
+use App\Domain\ApiClient\CarParkApiClient\Response as CarparkResponse;
 
 class StringFormatter implements FormatterInterface
 {
