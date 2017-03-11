@@ -60,7 +60,7 @@ class ServicesLoader
 
         $this->app['api.client.carpark'] = function () {
             return new CarParkApiClient(
-                $this->app['weather.base_uri'],
+                $this->app['carpark.base_uri'],
                 $this->app['api.client']
             );
         };

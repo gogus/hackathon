@@ -19,7 +19,6 @@ class WeatherApiClient implements ApiClient
 
     /**
      * @param $url
-     * @param $timeout
      * @param Client $guzzleClient
      */
     public function __construct($url, Client $guzzleClient)
