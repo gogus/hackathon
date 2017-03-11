@@ -1,13 +1,15 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Callback;
+
+use GuzzleHttp\Client;
 
 /**
- * Class FacebookMessengerService
+ * Class FacebookMessengerCallback
  *
- * @package App\Services
+ * @package App\Services\Callback
  */
-class FacebookMessengerService extends BaseService
+class FacebookMessengerCallback
 {
     /** @var string */
     protected $accessToken;
@@ -15,19 +17,21 @@ class FacebookMessengerService extends BaseService
     /** @var int */
     protected $fanpageId;
 
+    /** @var Client */
+    protected $client;
+
     /**
-     * FacebookMessengerService constructor.
+     * FacebookMessengerCallback constructor.
      *
-     * @param $db
+     * @param Client $client
      * @param string $accessToken
      * @param int $fanpageId
      */
-    public function __construct($db, $accessToken, $fanpageId)
+    public function __construct(Client $client, $accessToken, $fanpageId)
     {
         $this->accessToken = $accessToken;
         $this->fanpageId = $fanpageId;
-
-        parent::__construct($db);
+        $this->client = $client;
     }
 
     /**
@@ -36,9 +40,6 @@ class FacebookMessengerService extends BaseService
      */
     public function sendMessage($recipientId, $outputMessage)
     {
-        $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=' . $this->accessToken;
-        $ch = curl_init($url);
-
         $data = [
             'recipient' => [
                 'id' => $recipientId
@@ -48,10 +49,11 @@ class FacebookMessengerService extends BaseService
             ]
         ];
 
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-
-        curl_exec($ch);
+        $this->client->post(
+            'https://graph.facebook.com/v2.6/me/messages?access_token=' . $this->accessToken,
+            [
+                'json' => $data
+            ]
+        );
     }
 }

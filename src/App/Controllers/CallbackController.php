@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use App\Services\FacebookMessengerService;
+use App\Services\Callback\FacebookMessengerCallback;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -11,17 +11,17 @@ use Symfony\Component\HttpFoundation\JsonResponse;
  */
 class CallbackController
 {
-    /** @var FacebookMessengerService */
-    protected $facebookMessengerService;
+    /** @var FacebookMessengerCallback */
+    protected $facebookMessengerCallback;
 
     /**
      * CallbackController constructor.
      *
-     * @param FacebookMessengerService $facebookMessengerService
+     * @param FacebookMessengerCallback $facebookMessengerCallback
      */
-    public function __construct(FacebookMessengerService $facebookMessengerService)
+    public function __construct(FacebookMessengerCallback $facebookMessengerCallback)
     {
-        $this->facebookMessengerService = $facebookMessengerService;
+        $this->facebookMessengerCallback = $facebookMessengerCallback;
     }
 
     /**
@@ -39,7 +39,7 @@ class CallbackController
             $messages = $entry['messaging'];
 
             foreach ($messages as $message) {
-                $this->facebookMessengerService->sendMessage($message['sender']['id'], 'Whatever.');
+                $this->facebookMessengerCallback->sendMessage($message['sender']['id'], 'Whatever.');
             }
         }
 
