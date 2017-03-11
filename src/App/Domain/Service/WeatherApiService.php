@@ -4,6 +4,7 @@ namespace App\Domain\Service;
 use App\Domain\ApiClient\WeatherApiClient\Response\Response;
 use App\Domain\ApiClient\WeatherApiClient\Response\Weather;
 use App\Domain\ApiClient\WeatherApiClient\WeatherApiClient;
+use App\Domain\ApiClient\ApiClient;
 
 /**
  * Class ApiService
@@ -20,9 +21,9 @@ class WeatherApiService implements ServiceInterface
      * ApiService constructor.
      * @param $apiWeatherClient
      */
-    public function __construct(WeatherApiClient $apiWeatherClient)
+    public function __construct(ApiClient $apiClient)
     {
-        $this->apiWeatherClient = $apiWeatherClient;
+        $this->apiWeatherClient = $apiClient;
     }
 
 

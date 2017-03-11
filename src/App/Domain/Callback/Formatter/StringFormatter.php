@@ -2,24 +2,31 @@
 
 namespace App\Domain\Callback\Formatter;
 
-use App\Domain\ApiClient\WeatherApiClient\Response\Response;
+use App\Domain\ApiClient\CarParkApiClient\Response\Response as CarparkResponse;
 
 class StringFormatter implements FormatterInterface
 {
+    /**
+     * @param mixed $response
+     *
+     * @return array
+     */
     public function format($response)
     {
-        if ($response instanceof Response)
+        if ($response instanceof CarparkResponse)
         {
-            return sprintf(
-                "The temperature in %s is %d°C, the wind is %d m/s, humidity is %d%%, pressure is %d hPa",
-                $response->getCity()->getName(),
-                $response->getMain()->getTemperature(),
-                $response->getWind()->getSpeed(),
-                $response->getMain()->getHumidity(),
-                $response->getMain()->getPressure()
-            );
+            $output = '';
+
+            foreach ($response->getParkings() as $parking)
+            {
+                $output .= $parking->getParkingName() . ' ';
+            }
+
+            $response = $output;
         }
 
-        return (string)$response;
+        return [
+            'text' => $response
+        ];
     }
 }

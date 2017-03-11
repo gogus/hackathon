@@ -1,25 +1,19 @@
 <?php
 
-namespace App\Domain\ApiClient\WeatherApiClient;
+namespace App\Domain\ApiClient\CarParkApiClient;
 
 use App\Domain\ApiClient\ApiClient;
-use Exception;
 use GuzzleHttp\Client;
 
-class WeatherApiClient implements ApiClient
+class CarParkApiClient implements ApiClient
 {
-    /**
-     * @var string
-     */
-    protected $url;
-    /**
-     * @var ClientInterface
-     */
     protected $guzzleClient;
+    protected $url;
 
     /**
-     * @param $url
-     * @param $timeout
+     * CarParkApiClient constructor.
+     *
+     * @param string $url
      * @param Client $guzzleClient
      */
     public function __construct($url, Client $guzzleClient)
@@ -30,13 +24,13 @@ class WeatherApiClient implements ApiClient
 
     public function makeCall($param = null)
     {
-        $res     = $this->guzzleClient->get($this->url)->getBody()->getContents();
+        $res = $this->guzzleClient->get($this->url)->getBody()->getContents();
         $jsonRes = json_decode($res, true);
 
         if (!$jsonRes) {
-            throw new Exception('message:' . var_export($res,true));
+            throw new Exception('message:' . var_export($res, true));
         }
 
-       return $jsonRes;
+        return $jsonRes;
     }
 }

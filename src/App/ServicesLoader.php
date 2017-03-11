@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Domain\Callback\FacebookMessengerCallback;
+use App\Domain\Callback\Formatter\FormatterFactory;
 use App\Domain\Callback\Formatter\StringFormatter;
 use App\Domain\QueryParser;
 use App\Domain\Service\TimeService;
@@ -10,6 +11,9 @@ use GuzzleHttp\Client;
 use Silex\Application;
 use App\Domain\Service\WeatherApiService;
 use App\Domain\ApiClient\WeatherApiClient\WeatherApiClient;
+use App\Domain\ApiClient\CarParkApiClient\CarParkApiClient;
+use App\Domain\Service\CarParkApiService;
+
 
 class ServicesLoader
 {
@@ -44,13 +48,19 @@ class ServicesLoader
         };
 
         $this->app['facebook.formatter'] = function () {
-            return new StringFormatter();
+            return new FormatterFactory();
         };
 
         $this->app['api.client.weather'] = function () {
             return new WeatherApiClient(
                 $this->app['weather.base_uri'],
-                $this->app['weather.timeout'],
+                $this->app['api.client']
+            );
+        };
+
+        $this->app['api.client.carpark'] = function () {
+            return new CarParkApiClient(
+                $this->app['weather.base_uri'],
                 $this->app['api.client']
             );
         };
@@ -71,8 +81,13 @@ class ServicesLoader
             return new TimeService();
         };
 
+        //Domain Services
         $this->app['service.weather'] = function () {
             return new WeatherApiService($this->app['api.client.weather']);
+        };
+
+        $this->app['service.carpark'] = function () {
+            return new CarParkApiService($this->app['api.client.carpark']);
         };
 
         $this->app['service.bike'] = function () {
