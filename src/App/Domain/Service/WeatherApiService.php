@@ -41,6 +41,6 @@ class WeatherApiService implements ServiceInterface
     {
         $data = $this->apiWeatherClient->makeCall();
         $dataEntity = Weather::fromArray($data);
-        return $dataEntity;
+        return $dataEntity->getDescription();
     }
 }
