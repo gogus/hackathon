@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Test\Infastructure\Weather;
+namespace App\Test\Domain\ApiClient\WeatherApiClient\Response;
 
-use App\Infrastructure\Weather\Response;
+use App\Domain\ApiClient\WeatherApiClient\Response\Response;
 use PHPUnit\Framework\TestCase;
 
 class ResponseTest extends TestCase

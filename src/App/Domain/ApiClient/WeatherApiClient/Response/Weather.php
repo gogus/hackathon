@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Weather;
+namespace App\Domain\ApiClient\WeatherApiClient\Response;
 
 class Weather
 {

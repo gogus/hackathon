@@ -2,7 +2,7 @@
 namespace App\Controllers;
 
 use App\Services\Callback\FacebookMessengerCallback;
-use App\Services\QueryParserService;
+use App\Services\QueryParser;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -22,11 +22,11 @@ class CallbackController
      * CallbackController constructor.
      *
      * @param FacebookMessengerCallback $facebookMessengerCallback
-     * @param QueryParserService $queryParserService
+     * @param QueryParser               $queryParserService
      */
     public function __construct(
         FacebookMessengerCallback $facebookMessengerCallback,
-        QueryParserService $queryParserService)
+        QueryParser $queryParserService)
     {
         $this->facebookMessengerCallback = $facebookMessengerCallback;
         $this->queryParserService = $queryParserService;

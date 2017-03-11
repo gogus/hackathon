@@ -1,14 +1,9 @@
 <?php
 
-namespace App\Services\Callback;
+namespace App\Domain\Callback;
 
 use GuzzleHttp\Client;
 
-/**
- * Class FacebookMessengerCallback
- *
- * @package App\Services\Callback
- */
 class FacebookMessengerCallback
 {
     /** @var string */
@@ -21,11 +16,9 @@ class FacebookMessengerCallback
     protected $client;
 
     /**
-     * FacebookMessengerCallback constructor.
-     *
      * @param Client $client
      * @param string $accessToken
-     * @param int $fanpageId
+     * @param int    $fanpageId
      */
     public function __construct(Client $client, $accessToken, $fanpageId)
     {
@@ -35,24 +28,24 @@ class FacebookMessengerCallback
     }
 
     /**
-     * @param int $recipientId
+     * @param int    $recipientId
      * @param string $outputMessage
      */
     public function sendMessage($recipientId, $outputMessage)
     {
         $data = [
             'recipient' => [
-                'id' => $recipientId
+                'id' => $recipientId,
             ],
-            'message' => [
-                'text' => $outputMessage
-            ]
+            'message'   => [
+                'text' => $outputMessage,
+            ],
         ];
 
         $this->client->post(
             'https://graph.facebook.com/v2.6/me/messages?access_token=' . $this->accessToken,
             [
-                'json' => $data
+                'json' => $data,
             ]
         );
     }

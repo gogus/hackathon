@@ -1,13 +1,8 @@
 <?php
 
-namespace App\Services;
+namespace App\Domain;
 
-/**
- * Class QueryParserService
- *
- * @package App\Services
- */
-class QueryParserService
+class QueryParser
 {
     const MESSAGE_NOT_UNDERSTOOD = 'Huh! what do you mean?';
 
@@ -21,6 +16,8 @@ class QueryParserService
 
     /**
      * @param string $query
+     *
+     * @return string
      */
     public function queryParse($query)
     {
@@ -30,7 +27,7 @@ class QueryParserService
             foreach ($service as $word) {
                 $word = strtolower($word);
                 if (in_array($word, $words)) {
-                    $serviceClass = '\App\Services\\' . ucfirst($serviceName). 'Service';
+                    $serviceClass = '\App\Domain\\Service\\' . ucfirst($serviceName). 'Service';
 
                     return (new $serviceClass())->ask($query);
                 }

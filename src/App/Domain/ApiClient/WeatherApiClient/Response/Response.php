@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Weather;
+namespace App\Domain\ApiClient\WeatherApiClient\Response;
 
 /**
  * Response in Openweathermap API format: https://openweathermap.org/current#current_JSON

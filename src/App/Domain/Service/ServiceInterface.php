@@ -7,7 +7,7 @@ interface ServiceInterface
     /**
      * @param string $query
      *
-     * @return AnswerInterface
+     * @return mixed
      */
     public function ask($query);
 }
