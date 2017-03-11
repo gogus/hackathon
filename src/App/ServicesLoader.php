@@ -29,6 +29,12 @@ class ServicesLoader
      */
     public function bindServicesIntoContainer()
     {
-
+        $this->app['facebook.messenger.service'] = function() {
+            return new Services\FacebookMessengerService(
+                $this->app['db'],
+                $this->app['fb.access_token'],
+                $this->app['fb.fanpage_id']
+            );
+        };
     }
 }
