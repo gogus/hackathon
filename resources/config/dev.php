@@ -11,4 +11,5 @@ $app['db.options'] = array(
 );
 
 
-$app['api.weather'] = 'https://api.tfl.lu/v1/Weather';
+$app['weather.base_uri'] = 'https://api.tfl.lu/v1/Weather';
+$app['carpark.base_uri'] = 'https://api.tfl.lu/v1/Occupancy/CarPark';

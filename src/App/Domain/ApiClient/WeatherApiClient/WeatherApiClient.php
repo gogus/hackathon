@@ -12,12 +12,6 @@ class WeatherApiClient implements ApiClient
      * @var string
      */
     protected $url;
-
-    /**
-     * @var
-     */
-    protected $timeout;
-
     /**
      * @var ClientInterface
      */
@@ -28,10 +22,9 @@ class WeatherApiClient implements ApiClient
      * @param $timeout
      * @param Client $guzzleClient
      */
-    public function __construct($url, $timeout, Client $guzzleClient)
+    public function __construct($url, Client $guzzleClient)
     {
         $this->url = $url;
-        $this->timeout = $timeout;
         $this->guzzleClient = $guzzleClient;
     }
 
