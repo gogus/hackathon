@@ -47,7 +47,7 @@ class IndexController
             $result = curl_exec($ch);
         }
 
-        file_put_contents('test', $input);
+        file_put_contents('test', var_export($input));
 
         return new JsonResponse(true);
     }
