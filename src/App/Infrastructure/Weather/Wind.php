@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Weather\Response\OpenWeatherMap;
+namespace App\Infrastructure\Weather;
 
 class Wind
 {

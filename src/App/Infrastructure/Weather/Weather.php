@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Weather\Response\OpenWeatherMap;
+namespace App\Infrastructure\Weather;
 
 class Weather
 {
@@ -38,7 +38,7 @@ class Weather
      */
     public static function fromArray(array $data)
     {
-        return new self($data['main'], $data['description'], $data['iconId']);
+        return new self($data['main'], $data['description'], $data['icon']);
     }
 
     /**
