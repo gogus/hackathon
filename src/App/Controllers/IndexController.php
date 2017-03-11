@@ -48,5 +48,7 @@ class IndexController
         }
 
         file_put_contents('test', $input);
+
+        return new JsonResponse(true);
     }
 }
