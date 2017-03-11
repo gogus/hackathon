@@ -49,6 +49,7 @@ class RoutesLoader
         $api = $this->app["controllers_factory"];
 
         $api->get('/index', "index.controller:indexAction");
+        $api->get('/callback/messenger', "index.controller:messengerHookAction");
 
         $this->app->mount($this->app["api.endpoint"].'/'.$this->app["api.version"], $api);
     }
