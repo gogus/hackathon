@@ -17,7 +17,8 @@ $app['db.options'] = array(
 $app['weather.base_uri'] = 'https://api.tfl.lu/v1/Weather';
 $app['weather.timeout'] = 2;
 
-
+$app['bike.base_uri'] = 'https://api.tfl.lu/v1/BikePoint';
+$app['bike.timeout'] = 10;
 
 /**
  * MySQL
