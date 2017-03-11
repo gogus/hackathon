@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Infrastructure\Weather\Response\OpenWeatherMap;
+namespace App\Infrastructure\Weather;
 
 /**
  * Response in Openweathermap API format: https://openweathermap.org/current#current_JSON
  *
  * Some of the data was skipped intentionally.
  */
-class OpenWeatherMapResponse
+class Response
 {
     /**
      * @var City
@@ -69,7 +69,7 @@ class OpenWeatherMapResponse
     /**
      * @param array $data
      *
-     * @return self
+     * @return Response
      */
     public static function fromArray(array $data)
     {
