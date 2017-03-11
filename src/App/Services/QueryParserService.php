@@ -20,15 +20,6 @@ class QueryParserService
     ];
 
     /**
-     * QueryParserService constructor.
-     * @param $db
-     */
-    public function __construct($db)
-    {
-        parent::__construct($db);
-    }
-
-    /**
      * @param string $query
      */
     public function queryParse($query)
