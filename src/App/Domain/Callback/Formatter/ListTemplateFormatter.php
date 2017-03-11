@@ -33,7 +33,7 @@ class ListTemplateFormatter implements FormatterInterface
         }
 
         return [
-            'attachement' => [
+            'attachment' => [
                 'type' => 'template',
                 'payload' => [
                     'template_type' => 'list',
