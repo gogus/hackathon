@@ -2,22 +2,19 @@
 
 namespace App\Domain\ApiClient\WeatherApiClient\Response;
 
+use App\Domain\ApiClient\Response\StringableInterface;
+
 /**
  * Response in Openweathermap API format: https://openweathermap.org/current#current_JSON
  *
  * Some of the data was skipped intentionally.
  */
-class Response
+class Response implements StringableInterface
 {
     /**
      * @var City
      */
     private $city;
-
-    /**
-     * @var Weather
-     */
-    private $weather;
 
     /**
      * @var Main
@@ -43,7 +40,6 @@ class Response
 
     /**
      * @param City    $city
-     * @param Weather $weather
      * @param Main    $main
      * @param Wind    $wind
      * @param Clouds  $clouds
@@ -51,7 +47,6 @@ class Response
      */
     public function __construct(
         City $city,
-        Weather $weather,
         Main $main,
         Wind $wind,
         Clouds $clouds,
@@ -59,7 +54,6 @@ class Response
     )
     {
         $this->city = $city;
-        $this->weather = $weather;
         $this->main = $main;
         $this->wind = $wind;
         $this->clouds = $clouds;
@@ -75,11 +69,21 @@ class Response
     {
         return new self(
             new City($data['name']),
-            Weather::fromArray($data['weather']),
             Main::fromArray($data['main']),
             Wind::fromArray($data['wind']),
             Clouds::fromArray($data['clouds']),
             $data['visibility']
+        );
+    }
+
+    public function __toString()
+    {
+        return sprintf(
+            "The temperature in %s is %d°C, the wind is %d m/s, humidity is %d%%, pressure is %d hPa",
+            $this->main->getTemperature(),
+            $this->wind->getSpeed(),
+            $this->main->getHumidity(),
+            $this->main->getPressure()
         );
     }
 
@@ -89,14 +93,6 @@ class Response
     public function getCity()
     {
         return $this->city;
-    }
-
-    /**
-     * @return Weather
-     */
-    public function getWeather()
-    {
-        return $this->weather;
     }
 
     /**

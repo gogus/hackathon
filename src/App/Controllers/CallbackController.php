@@ -3,32 +3,44 @@
 namespace App\Controllers;
 
 use App\Domain\Callback\FacebookMessengerCallback;
+use App\Domain\Callback\Formatter\FormatterInterface;
 use App\Domain\QueryParser;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
- * Class CallbackController
- *
- * @package App\Controllers
+ * Facebook app API controller
  */
 class CallbackController
 {
-    /** @var FacebookMessengerCallback */
+    /**
+     * @var FacebookMessengerCallback
+     */
     protected $facebookMessengerCallback;
 
-    /** @var QueryParser */
+    /**
+     * @var QueryParser
+     */
     protected $queryParserService;
 
     /**
+     * @var FormatterInterface
+     */
+    protected $responseFormatter;
+
+    /**
      * @param FacebookMessengerCallback $facebookMessengerCallback
-     * @param QueryParser               $queryParser
+     * @param QueryParser               $queryParserService
+     * @param FormatterInterface        $responseFormatter
      */
     public function __construct(
         FacebookMessengerCallback $facebookMessengerCallback,
-        QueryParser $queryParser)
+        QueryParser $queryParserService,
+        FormatterInterface $responseFormatter
+    )
     {
         $this->facebookMessengerCallback = $facebookMessengerCallback;
-        $this->queryParserService = $queryParser;
+        $this->queryParserService = $queryParserService;
+        $this->responseFormatter = $responseFormatter;
     }
 
     /**
@@ -47,7 +59,7 @@ class CallbackController
 
             foreach ($messages as $message) {
                 $response = $this->queryParserService->queryParse($message['message']['text']);
-                $formatted = $response;
+                $formatted = $this->responseFormatter->format($response);
                 $this->facebookMessengerCallback->sendMessage($message['sender']['id'], $formatted);
             }
         }

@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Domain\Callback\FacebookMessengerCallback;
+use App\Domain\Callback\Formatter\StringFormatter;
 use App\Domain\QueryParser;
 use App\Domain\Service\TimeService;
 use GuzzleHttp\Client;
@@ -10,19 +11,14 @@ use Silex\Application;
 use App\Domain\Service\WeatherApiService;
 use App\Domain\ApiClient\WeatherApiClient\WeatherApiClient;
 
-/**
- * Class ServicesLoader
- *
- * @package App
- */
 class ServicesLoader
 {
-    /** @var Application */
+    /**
+     * @var Application
+     */
     protected $app;
 
     /**
-     * ServicesLoader constructor.
-     *
      * @param Application $app
      */
     public function __construct(Application $app)
@@ -35,19 +31,27 @@ class ServicesLoader
      */
     public function bindServicesIntoContainer()
     {
+        $this->app['api.client'] = function () {
+            return new Client();
+        };
+
         $this->app['facebook.messenger.service'] = function () {
             return new FacebookMessengerCallback(
-                new Client(),
+                $this->app['api.client'],
                 $this->app['fb.access_token'],
                 $this->app['fb.fanpage_id']
             );
+        };
+
+        $this->app['facebook.formatter'] = function () {
+            return new StringFormatter();
         };
 
         $this->app['api.client.weather'] = function () {
             return new WeatherApiClient(
                 $this->app['weather.base_uri'],
                 $this->app['weather.timeout'],
-                new Client()
+                $this->app['api.client']
             );
         };
 
