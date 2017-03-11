@@ -23,5 +23,8 @@ services:
     environment:
       - MYSQL_ALLOW_EMPTY_PASSWORD=yes
 
+  memcache:
+    image: memcached:alpine
+
 #  lucida:
 #    image: claritylab/lucida
