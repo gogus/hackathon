@@ -27,7 +27,6 @@ class CarParkApiClient implements ApiClient
         $res = $this->guzzleClient->get($this->url)->getBody()->getContents();
 
         $jsonRes = json_decode($res, true);
-        file_put_contents('test33', var_export($jsonRes, true));
 
         if (!$jsonRes) {
             throw new Exception('message:' . var_export($res, true));
