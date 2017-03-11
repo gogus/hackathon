@@ -4,7 +4,7 @@ namespace App\Domain\Callback\Formatter;
 
 use App\Domain\ApiClient\WeatherApiClient\Response\Response;
 
-class ListTemplateFormatter implements FormatterInterface
+class GenericFormatter implements FormatterInterface
 {
     /**
      * @inheritDoc
@@ -12,15 +12,11 @@ class ListTemplateFormatter implements FormatterInterface
     public function format($response)
     {
         $elements = [];
-        $buttons  = [];
+        $buttons = [];
 
         if ($response instanceof Response)
         {
             $elements = [
-                [
-                    'title' => 'Weather ' . $response->getCity()->getName() . ' ' . $response->getMain()->getTemperature(),
-                    'subtitle' => 'Humidity ' . $response->getMain()->getHumidity() . ', ' . 'Wind speed ' . $response->getWind()->getSpeed()
-                ],
                 [
                     'title' => 'Weather ' . $response->getCity()->getName() . ' ' . $response->getMain()->getTemperature(),
                     'subtitle' => 'Humidity ' . $response->getMain()->getHumidity() . ', ' . 'Wind speed ' . $response->getWind()->getSpeed()
@@ -40,7 +36,7 @@ class ListTemplateFormatter implements FormatterInterface
             'attachment' => [
                 'type' => 'template',
                 'payload' => [
-                    'template_type' => 'list',
+                    'template_type' => 'generic',
                     'elements' => $elements,
                     'buttons' => $buttons
                 ]

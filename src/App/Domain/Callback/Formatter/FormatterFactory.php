@@ -19,7 +19,7 @@ class FormatterFactory
     public function format($response)
     {
         if ($response instanceof Response) {
-            $formatter = new ListTemplateFormatter();
+            $formatter = new GenericFormatter();
         } else {
             $formatter = new StringFormatter();
         }
