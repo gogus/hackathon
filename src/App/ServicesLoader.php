@@ -65,6 +65,14 @@ class ServicesLoader
             );
         };
 
+        $this->app['api.client.bike'] = function () {
+            return new WeatherApiClient(
+                $this->app['bike.base_uri'],
+                $this->app['bike.timeout'],
+                $this->app['api.client']
+            );
+        };
+
         $this->app['query.parser.service'] = function () {
             return new QueryParser($this->app);
         };
@@ -80,6 +88,10 @@ class ServicesLoader
 
         $this->app['service.carpark'] = function () {
             return new CarParkApiService($this->app['api.client.carpark']);
+        };
+
+        $this->app['service.bike'] = function () {
+            return new WeatherApiService($this->app['api.client.bike']);
         };
     }
 }
