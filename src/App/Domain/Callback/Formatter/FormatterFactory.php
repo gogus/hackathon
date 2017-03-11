@@ -24,6 +24,6 @@ class FormatterFactory
             $formatter = new StringFormatter();
         }
 
-        return new $formatter->format($response);
+        return $formatter->format($response);
     }
 }
