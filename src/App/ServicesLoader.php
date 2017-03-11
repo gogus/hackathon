@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Domain\Callback\FacebookMessengerCallback;
+use App\Domain\Callback\Formatter\FormatterFactory;
 use App\Domain\Callback\Formatter\StringFormatter;
 use App\Domain\QueryParser;
 use App\Domain\Service\TimeService;
@@ -47,7 +48,7 @@ class ServicesLoader
         };
 
         $this->app['facebook.formatter'] = function () {
-            return new StringFormatter();
+            return new FormatterFactory();
         };
 
         $this->app['api.client.weather'] = function () {

@@ -4,6 +4,11 @@ namespace App\Domain\Callback;
 
 use GuzzleHttp\Client;
 
+/**
+ * Class FacebookMessengerCallback
+ *
+ * @package App\Domain\Callback
+ */
 class FacebookMessengerCallback
 {
     /** @var string */
@@ -37,9 +42,7 @@ class FacebookMessengerCallback
             'recipient' => [
                 'id' => $recipientId,
             ],
-            'message'   => [
-                'text' => $outputMessage,
-            ],
+            'message'   => $outputMessage,
         ];
 
         $this->client->post(
