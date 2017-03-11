@@ -37,6 +37,9 @@ class RoutesLoader
         $this->app['index.controller'] = function() {
             return new Controllers\IndexController();
         };
+        $this->app['callback.controller'] = function() {
+            return new Controllers\CallbackController();
+        };
     }
 
     /**
@@ -49,7 +52,7 @@ class RoutesLoader
         $api = $this->app["controllers_factory"];
 
         $api->get('/index', "index.controller:indexAction");
-        $api->post('/callback/messenger', "index.controller:messengerHookAction");
+        $api->post('/callback/messenger', "callback.controller:facebookMessengerAction");
 
         $this->app->mount($this->app["api.endpoint"].'/'.$this->app["api.version"], $api);
     }
