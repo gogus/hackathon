@@ -4,7 +4,7 @@ namespace App\Domain\ApiClient\WeatherApiClient;
 
 use App\Domain\ApiClient\ApiClient;
 use App\Domain\ApiClient\WeatherApiClient\Response\Response;
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Client;
 
 class WeatherApiClient implements ApiClient
 {
@@ -26,9 +26,9 @@ class WeatherApiClient implements ApiClient
     /**
      * @param $url
      * @param $timeout
-     * @param ClientInterface $guzzleClient
+     * @param Client $guzzleClient
      */
-    public function __construct($url, $timeout, ClientInterface $guzzleClient)
+    public function __construct($url, $timeout, Client $guzzleClient)
     {
         $this->url = $url;
         $this->timeout = $timeout;
@@ -37,9 +37,10 @@ class WeatherApiClient implements ApiClient
 
     public function makeCall($param = null)
     {
-        $res = $this->guzzleClient->get($this->url);
-        $jsonRes = json_decode($res,true);
-        if(!$jsonRes){
+        $res = $this->guzzleClient->get($this->url)->getBody();
+        $jsonRes = json_decode($res, true);
+
+        if (!$jsonRes) {
             throw new \Exception('message:'.var_export($res,true));
         }
 
