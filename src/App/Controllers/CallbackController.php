@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use App\Callback\FacebookMessengerCallback;
+use App\Services\Callback\FacebookMessengerCallback;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Callback;
+namespace App\Services\Callback;
 
 use GuzzleHttp\Client;
 
 /**
  * Class FacebookMessengerCallback
  *
- * @package App\Callback
+ * @package App\Services\Callback
  */
 class FacebookMessengerCallback
 {

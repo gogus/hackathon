@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Callback\FacebookMessengerCallback;
+use App\Services\Callback\FacebookMessengerCallback;
 use GuzzleHttp\Client;
 use Silex\Application;
 
