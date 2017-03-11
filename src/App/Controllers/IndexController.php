@@ -28,12 +28,16 @@ class IndexController
 
         foreach ($input['entry'] as $entry) {
             foreach ($entry['messaging'] as $message) {
+                if ($message['sender'] == '1205834489534388') {
+                    continue;
+                }
+
                 $url = 'https://graph.facebook.com/v2.6/me/messages?access_token=EAAJ4pzDROJwBANhEhVUnhZCpAE8VaKGwSu9wCsCAQM8Bpew2THlE0klfHraRGmiiY9NXc5ZAjb9gwsHaJZAuZBozUREVXXhew4dCfDLZCoXZBFqY2tXCsp35jXqn5DeDwLPXN1jiOZCkKsmppRY1qE0kZBpohdEUKYRbsvLIXtkBwwZDZD';
                 $ch = curl_init($url);
 
                 $data = [
                     'recipient' => [
-                        'id' => $message['recipient']['id']
+                        'id' => $message['sender']['id']
                     ],
                     'message' => [
                         'text' => 'Whatever'
