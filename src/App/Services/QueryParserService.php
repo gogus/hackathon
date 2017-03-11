@@ -30,7 +30,7 @@ class QueryParserService
             foreach ($service as $word) {
                 $word = strtolower($word);
                 if (in_array($word, $words)) {
-                    $serviceClass = '\App\Services\\' . $serviceName. 'Service';
+                    $serviceClass = '\App\Services\\' . ucfirst($serviceName). 'Service';
 
                     return (new $serviceClass())->ask($query);
                 }
