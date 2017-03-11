@@ -25,19 +25,13 @@ class IndexController
      */
     public function messengerHookAction()
     {
-        $access_token = "EAAJ4pzDROJwBAIJxYgPjLNnkYFYdaqLwZBB4PMLSTf6BVzraKcECqhf3hVukT6yO538DILfwA0C5ZCSS60erw3HtHjurKYtIRal4OxzY55svpocGWxJoGEWKaZAZBeWQgaHDIc2Fzowd7yPM8ZCNLSG1ziUS31yuxqubMWIcqpgZDZD";
-        $verify_token = "luxbot";
-        $hub_verify_token = null;
+        $challenge = $_REQUEST['hub_challenge'];
+        $verify_token = $_REQUEST['hub_verify_token'];
 
-        if(isset($_REQUEST['hub_challenge'])) {
-            $challenge = $_REQUEST['hub_challenge'];
-            $hub_verify_token = $_REQUEST['hub_verify_token'];
-        }
-
-        if ($hub_verify_token === $verify_token) {
+        if ($verify_token === 'luxbot') {
             return new Response($challenge);
         }
 
-        return new Response();
+        return new Response('bad');
     }
 }
