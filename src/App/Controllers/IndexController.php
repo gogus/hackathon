@@ -50,6 +50,8 @@ class IndexController
             }
         }
 
+        file_put_contents('test3', var_export($input['entry'], true));
+
         return new JsonResponse(true);
     }
 }
