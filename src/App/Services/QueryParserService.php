@@ -32,7 +32,7 @@ class QueryParserService
                 if (in_array($word, $words)) {
                     $serviceClass = '\App\Services\\' . $serviceName;
 
-                    return new $serviceClass($query);
+                    return (new $serviceClass())->ask($query);
                 }
             }
         }

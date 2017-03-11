@@ -48,12 +48,6 @@ class ServicesLoader
         };
 
         $this->app['query.parser.service'] = function () {
-            return new Services\QueryParserService(
-                $this->app['db']
-            );
-        };
-
-        $this->app['query.parser.service'] = function () {
             return new Services\QueryParserService();
         };
     }

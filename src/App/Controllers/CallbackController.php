@@ -47,7 +47,7 @@ class CallbackController
             $messages = $entry['messaging'];
 
             foreach ($messages as $message) {
-                $queryParser = $this->queryParserService->ask($message['message']['text']);
+                $queryParser = $this->queryParserService->queryParse($message['message']['text']);
                 $this->facebookMessengerCallback->sendMessage($message['sender']['id'], $queryParser);
             }
         }
