@@ -10,7 +10,7 @@ namespace App\Domain\Service;
 
 
 use App\Domain\ApiClient\WeatherApiClient\Response\Weather;
-use App\Domain\Service\ApiClient\WeatherApiClient\WeatherApiClient;
+use App\Domain\ApiClient\WeatherApiClient\WeatherApiClient;
 
 /**
  * Class ApiService
