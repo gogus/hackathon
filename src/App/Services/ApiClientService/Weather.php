@@ -11,12 +11,12 @@ namespace App\Domain\Service\ApiClientService;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
-
+use App\Domain\Service\ApiClientService\ApiClientService;
 /**
  * Class Weather
  * @package App\Domain\Service\ApiClientService
  */
-class Weather
+class Weather implements ApiClientService
 {
     /**
      * @var
@@ -48,8 +48,9 @@ class Weather
     /**
      * @return mixed
      */
-    public function makeCall()
+    public function makeCall($param = null)
     {
-       return $this->guzzleCleint($this->url,$this->timeout);
+       return json_decode($this->guzzleCleint($this->url,$this->timeout));
     }
+
 }
