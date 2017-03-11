@@ -37,6 +37,6 @@ class WeatherApiClient implements ApiClient
 
     public function makeCall($param = null)
     {
-       return Response::fromArray(json_decode($this->guzzleClient($this->url,$this->timeout)));
+       return Response::fromArray(json_decode($this->guzzleClient->get($this->url)));
     }
 }
