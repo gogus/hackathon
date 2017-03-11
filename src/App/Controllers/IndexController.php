@@ -43,7 +43,10 @@ class IndexController
             curl_setopt($ch, CURLOPT_POST, 1);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
             curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+
             $result = curl_exec($ch);
         }
+
+        file_put_contents('test', $input);
     }
 }
