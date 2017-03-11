@@ -5,6 +5,7 @@ namespace App\Domain\ApiClient\WeatherApiClient;
 use App\Domain\ApiClient\ApiClient;
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 
 class WeatherApiClient implements ApiClient
 {

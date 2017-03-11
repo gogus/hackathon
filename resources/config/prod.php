@@ -21,6 +21,9 @@ $app['bike.base_uri'] = 'https://api.tfl.lu/v1/BikePoint';
 $app['bike.timeout'] = 10;
 $app['carpark.base_uri'] = 'https://api.tfl.lu/v1/Occupancy/CarPark';
 
+$app['api.client.address_base_uri'] = 'https://nominatim.openstreetmap.org/search/?format=json&addressdetails=1&limit=1&accept-language=en_US&countrycodes=lu&q=';
+$app['api.client.journey_uri_pattern'] = 'https://api.tfl.lu/v1/Journey/%f,%f/to/%f,%f';
+
 /**
  * MySQL
  */

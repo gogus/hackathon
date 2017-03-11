@@ -2,10 +2,13 @@
 
 namespace App;
 
+use App\Domain\ApiClient\AddressApiClient\AddressApiClient;
+use App\Domain\ApiClient\JourneyApiClient\JourneyApiClient;
 use App\Domain\Callback\FacebookMessengerCallback;
 use App\Domain\Callback\Formatter\FormatterFactory;
 use App\Domain\Callback\Formatter\StringFormatter;
 use App\Domain\QueryParser;
+use App\Domain\Service\JourneyService\JourneyService;
 use App\Domain\Service\TimeService;
 use GuzzleHttp\Client;
 use Silex\Application;
@@ -73,6 +76,20 @@ class ServicesLoader
             );
         };
 
+        $this->app['api.client.address'] = function () {
+            return new AddressApiClient(
+                $this->app['api.client'],
+                $this->app['api.client.address_base_uri']
+            );
+        };
+
+        $this->app['api.client.journey'] = function () {
+            return new JourneyApiClient(
+                $this->app['api.client'],
+                $this->app['api.client.journey_uri_pattern']
+            );
+        };
+
         $this->app['query.parser.service'] = function () {
             return new QueryParser($this->app);
         };
@@ -92,6 +109,14 @@ class ServicesLoader
 
         $this->app['service.bike'] = function () {
             return new WeatherApiService($this->app['api.client.bike']);
+        };
+
+        $this->app['service.journey'] = function () {
+            return new JourneyService(
+                $this->app['api.client.address'],
+                $this->app['api.client.journey'],
+                $this->app['monolog']
+            );
         };
     }
 }
