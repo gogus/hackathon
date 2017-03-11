@@ -51,7 +51,7 @@ class Parking
      */
     public function getParkingName()
     {
-        return $this->parkingName;
+        return $this->name;
     }
 
     /**
@@ -59,7 +59,7 @@ class Parking
      */
     public function getParkingTotalSpaces()
     {
-        return $this->parkingTotalSpaces;
+        return $this->getParkingTotalSpaces();
     }
 
     /**
@@ -67,7 +67,7 @@ class Parking
      */
     public function getParkingFreeSpaces()
     {
-        return $this->parkingFreeSpaces;
+        return $this->freeSpaces;
     }
 
     /**
@@ -75,7 +75,6 @@ class Parking
      */
     public function getParkingAddress()
     {
-        return $this->parkingAddress;
+        return $this->address;
     }
-
 }
