@@ -40,6 +40,8 @@ class WeatherApiClient implements ApiClient
         $res = $this->guzzleClient->get($this->url)->getBody()->getContents();
         $jsonRes = json_decode($res, true);
 
+        throw new \Exception('message:'.var_export($jsonRes,true));
+
         if (!$jsonRes) {
             throw new \Exception('message:'.var_export($res,true));
         }
