@@ -2,17 +2,23 @@
 
 namespace App\Domain\Callback\Formatter;
 
-use App\Domain\ApiClient\Response\StringableInterface;
+use App\Domain\ApiClient\WeatherApiClient\Response\Response;
 
 class StringFormatter implements FormatterInterface
 {
     public function format($response)
     {
-        if (is_string($response) || $response instanceof StringableInterface)
+        if ($response instanceof Response)
         {
-            return (string)$response;
+            return sprintf(
+                "The temperature in %s is %d°C, the wind is %d m/s, humidity is %d%%, pressure is %d hPa",
+                $response->getMain()->getTemperature(),
+                $response->getWind()->getSpeed(),
+                $response->getMain()->getHumidity(),
+                $response->getMain()->getPressure()
+            );
         }
 
-        throw new \Exception('Cannot format response of type ' . get_class($response));
+        return (string)$response;
     }
 }

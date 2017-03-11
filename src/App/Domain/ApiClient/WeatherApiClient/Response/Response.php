@@ -2,14 +2,12 @@
 
 namespace App\Domain\ApiClient\WeatherApiClient\Response;
 
-use App\Domain\ApiClient\Response\StringableInterface;
-
 /**
  * Response in Openweathermap API format: https://openweathermap.org/current#current_JSON
  *
  * Some of the data was skipped intentionally.
  */
-class Response implements StringableInterface
+class Response
 {
     /**
      * @var City
@@ -73,17 +71,6 @@ class Response implements StringableInterface
             Wind::fromArray($data['wind']),
             Clouds::fromArray($data['clouds']),
             $data['visibility']
-        );
-    }
-
-    public function __toString()
-    {
-        return sprintf(
-            "The temperature in %s is %d°C, the wind is %d m/s, humidity is %d%%, pressure is %d hPa",
-            $this->main->getTemperature(),
-            $this->wind->getSpeed(),
-            $this->main->getHumidity(),
-            $this->main->getPressure()
         );
     }
 
