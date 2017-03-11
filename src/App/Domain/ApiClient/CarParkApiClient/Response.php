@@ -6,8 +6,6 @@ namespace App\Domain\ApiClient\CarParkApiClient;
  * Some of the data was skipped intentionally.
  */
 
-use App\Domain\ApiClient\WeatherApiClient\Parking;
-
 /**
  * Class Response
  * @package App\Domain\ApiClient\CarParkApiClient\Response

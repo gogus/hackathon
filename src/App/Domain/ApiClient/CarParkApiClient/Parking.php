@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Domain\ApiClient\WeatherApiClient;
+namespace App\Domain\ApiClient\CarParkApiClient;
 
 /**
  * Class Parking
- * @package App\Domain\ApiClient\WeatherApiClient\Response
+ * @package App\Domain\ApiClient\CarParkApiClient\Response
  */
 class Parking
 {
