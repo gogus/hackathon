@@ -21,7 +21,7 @@ class FormatterFactory
         if ($response instanceof Response) {
             $formatter = new ListTemplateFormatter();
         } else {
-            $formatter = StringFormatter();
+            $formatter = new StringFormatter();
         }
 
         return new $formatter->format($response);
