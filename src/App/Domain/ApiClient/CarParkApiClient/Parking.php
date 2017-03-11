@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\ApiClient\WeatherApiClient\Response;
+namespace App\Domain\ApiClient\WeatherApiClient;
 
 /**
  * Class Parking
