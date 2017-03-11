@@ -7,7 +7,7 @@ namespace App\Services;
  *
  * @package App\Services
  */
-class QueryParserService extends BaseService
+class QueryParserService
 {
     const MESSAGE_NOT_UNDERSTOOD = 'Huh! what do you mean?';
 
