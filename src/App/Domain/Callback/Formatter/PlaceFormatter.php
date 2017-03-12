@@ -25,7 +25,7 @@ class PlaceFormatter implements FormatterInterface
                     'buttons' => [
                         [
                             'type' => 'web_url',
-                            'title' => 'Get more informations',
+                            'title' => 'Get more information',
                             'url' => $response->getLink(),
                         ]
                     ]

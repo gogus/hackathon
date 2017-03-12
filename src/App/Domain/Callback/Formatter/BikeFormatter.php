@@ -11,20 +11,20 @@ class BikeFormatter implements FormatterInterface
     public function format($response)
     {
         $elements = [
-            'title' => 'Following location does not exists',
+            'title' => 'Sorry, cannot find specified location',
             'buttons' => [
                 [
                     'type' => 'web_url',
-                    'title' => 'Get more informations',
+                    'title' => 'Get more information',
                     'url' => 'http://www.velo.lu',
                 ]
             ]];
 
-        $distance = $response->getDistance() ? ' Nearest station is:' . $response->getDistance() . ' m from you location' : '';
+        $distance = $response->getDistance() ? ' Nearest station is in ' . $response->getDistance() . ' m from you' : '';
         if ($response->getName() && $response->getDocks()) {
             $elements = [
                 [
-                    'title' => 'In station ' . $response->getName() . ' we have ' . $response->getAvailableBikes() . ' free bikes ',
+                    'title' => 'There are ' . $response->getAvailableBikes() . ' bikes at ' . $response->getName() . ' station',
                     'subtitle' => ' ' . $response->getAvailableEbikes() . ' free e-bikes , all docks in station: ' . $response->getDocks()
                         . $distance
                         . ' Location:' . '  ' . $response->getAddress(),
@@ -32,7 +32,7 @@ class BikeFormatter implements FormatterInterface
                     'buttons' => [
                         [
                             'type' => 'web_url',
-                            'title' => 'Get more informations',
+                            'title' => 'Get more information',
                             'url' => 'http://www.velo.lu',
                         ]
                     ]
