@@ -23,12 +23,12 @@ class StringFormatter implements FormatterInterface
 
         if ($response instanceof Parking) {
             $freeSpaces = $response->getFreeSpaces();
-            if (null === $freeSpaces && $freeSpaces > 0) {
+            if (null !== $freeSpaces && $freeSpaces > 0) {
                 $response = sprintf(
-                    'Parking spot at %s has %s free spaces out of %s',
+                    'Parking spot at %s has %s free spaces of %s',
                     $response->getName(),
                     $freeSpaces,
-                    $response->getTotalSpaces()
+                    $response->getTotalSpaces() ? $response->getTotalSpaces() : 0
                 );
             } else {
                 $response = sprintf('Parking spot at %s is full', $response->getName());

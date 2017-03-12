@@ -49,10 +49,10 @@ class Parking
     public static function fromArray(array $data)
     {
         return new self(
-            $data['properties']['name'],
-            $data['properties']['total'],
-            $data['properties']['free'],
-            $data['properties']['meta']['address']['street']
+            $data['name'],
+            $data['total'],
+            $data['free'],
+            $data['meta']['address']['street']
         );
     }
 
@@ -69,7 +69,7 @@ class Parking
      */
     public function getTotalSpaces()
     {
-        return $this->getTotalSpaces();
+        return $this->totalSpaces;
     }
 
     /**
