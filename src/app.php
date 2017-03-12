@@ -1,7 +1,6 @@
 <?php
 
 use Silex\Provider\HttpCacheServiceProvider;
-use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\MonologServiceProvider;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -21,10 +20,6 @@ $app->before(function (Request $request) {
 $app->register(new \Euskadi31\Silex\Provider\CorsServiceProvider);
 
 $app->register(new ServiceControllerServiceProvider());
-
-$app->register(new DoctrineServiceProvider(), array(
-    "db.options" => $app["db.options"]
-));
 
 $app->register(new HttpCacheServiceProvider(), array("http_cache.cache_dir" => ROOT_PATH . "/storage/cache",));
 

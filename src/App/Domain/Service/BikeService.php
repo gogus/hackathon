@@ -57,9 +57,9 @@ class BikeService implements ServiceInterface
      */
     private function getBikeStationByCurrentLocation()
     {
-        $long = 49.5105111;
-        $lat = 5.9952203;
-        $radius = 1;
+        $long = '5.9952203';
+        $lat = '49.5105111';
+        $radius = 500;
 
         return Response::fromArray($this->bikeApiClient->makeCall("/around/{$long}/{$lat}/{$radius}"));
     }

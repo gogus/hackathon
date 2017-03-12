@@ -18,13 +18,5 @@ services:
       - ./:/var/www/html
     entrypoint: /entrypoint.sh
 
-  mysql:
-    image: mysql:5.7
-    environment:
-      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
-
   memcache:
     image: memcached:alpine
-
-#  lucida:
-#    image: claritylab/lucida
