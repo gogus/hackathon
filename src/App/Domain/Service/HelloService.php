@@ -17,8 +17,9 @@ class HelloService implements ServiceInterface
      */
     public function ask($query = null, $token = '')
     {
-        $message = "Hello, how can I help you?";
+        $message = ["Hello, how can I help you?", "What's up?", "How it's going?", "Are you bored?"];
+        $randKey = array_rand($message);
 
-        return $message;
+        return $message[$randKey];
     }
 }
