@@ -6,7 +6,6 @@ use App\Domain\ApiClient\AddressApiClient\AddressApiClient;
 use App\Domain\ApiClient\JourneyApiClient\JourneyApiClient;
 use App\Domain\Callback\FacebookMessengerCallback;
 use App\Domain\Callback\Formatter\FormatterFactory;
-use App\Domain\Callback\Formatter\StringFormatter;
 use App\Domain\QueryParser;
 use App\Domain\Service\JourneyService\JourneyService;
 use App\Domain\Service\TimeService;
@@ -15,7 +14,7 @@ use Silex\Application;
 use App\Domain\Service\WeatherApiService;
 use App\Domain\ApiClient\WeatherApiClient\WeatherApiClient;
 use App\Domain\ApiClient\CarParkApiClient\CarParkApiClient;
-use App\Domain\Service\CarParkApiService;
+use App\Domain\Service\CarParkService;
 
 
 class ServicesLoader
@@ -104,7 +103,7 @@ class ServicesLoader
         };
 
         $this->app['service.carpark'] = function () {
-            return new CarParkApiService($this->app['api.client.carpark']);
+            return new CarParkService($this->app['api.client.carpark']);
         };
 
         $this->app['service.bike'] = function () {

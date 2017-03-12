@@ -71,8 +71,9 @@ class CarParkService implements ServiceInterface
     /**
      * @param Parking[] $parkings
      * @param string    $query
+     * @param string    $token
      *
-     * @return bool|Parking
+     * @return Parking|bool
      */
     private function findRecursive($parkings, $query, $token)
     {

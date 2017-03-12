@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Domain\Callback\FacebookMessengerCallback;
 use App\Domain\Callback\Formatter\FormatterFactory;
-use App\Domain\Callback\Formatter\FormatterInterface;
 use App\Domain\QueryParser;
 use Symfony\Component\HttpFoundation\JsonResponse;
 

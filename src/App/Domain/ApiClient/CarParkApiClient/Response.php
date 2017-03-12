@@ -35,7 +35,7 @@ class Response
         foreach ($parkings as $parking)
         {
             $parkingArea = Parking::fromArray($parking);
-            $response->parkings[$parkingArea->getName()] = $parkingArea;
+            $response->parkings[strtolower($parkingArea->getName())] = $parkingArea;
         }
 
         return $response;
