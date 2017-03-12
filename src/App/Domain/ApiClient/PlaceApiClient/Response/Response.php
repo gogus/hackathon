@@ -20,6 +20,10 @@ class Response
     /**
      * @var string
      */
+    private $name;
+    /**
+     * @var string
+     */
     private $link;
 
     /**
@@ -31,11 +35,13 @@ class Response
     public function __construct(
         $photo,
         $desc,
-        $link
+        $link,
+        $name
     ) {
         $this->photo = $photo;
         $this->desc = $desc;
         $this->link = $link;
+        $this->name = $name;
     }
 
     /**
@@ -47,8 +53,9 @@ class Response
     {
         return new self(
             $data['photo'],
-            $data['name'],
-            $data['link']
+            '',
+            $data['link'],
+            $data['name']
         );
     }
 
@@ -100,6 +107,23 @@ class Response
     public function setDesc($desc)
     {
         $this->desc = $desc;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        return $this;
     }
 
 }
