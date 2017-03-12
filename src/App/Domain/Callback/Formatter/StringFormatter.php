@@ -2,8 +2,8 @@
 
 namespace App\Domain\Callback\Formatter;
 
+use App\Domain\ApiClient\CarParkApiClient\Parking;
 use App\Domain\ApiClient\WeatherApiClient\Response\Response;
-use App\Domain\ApiClient\CarParkApiClient\Response as CarparkResponse;
 use App\Domain\Service\JourneyService\Answer;
 
 class StringFormatter implements FormatterInterface
@@ -22,14 +22,21 @@ class StringFormatter implements FormatterInterface
             );
         }
 
-        if ($response instanceof CarparkResponse)
+        if ($response instanceof Parking)
         {
-            $output = '';
-            foreach ($response->getParkings() as $parking)
+            if ($response->getFreeSpaces() > 0)
             {
-                $output .= $parking->getParkingName() . ' ';
+                $response = sprintf(
+                    'Parking spot at %s has %d free spaces out of %d',
+                    $response->getName(),
+                    $response->getFreeSpaces(),
+                    $response->getTotalSpaces()
+                );
             }
-            $response = $output;
+            else
+            {
+                $response = sprintf('Parking spot at %s is full', $response->getName());
+            }
         }
 
         if ($response instanceof Answer)

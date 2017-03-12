@@ -3,16 +3,22 @@
 namespace App\Domain\ApiClient\CarParkApiClient;
 
 use App\Domain\ApiClient\ApiClient;
+use Exception;
 use GuzzleHttp\Client;
 
 class CarParkApiClient implements ApiClient
 {
-    protected $guzzleClient;
+    /**
+     * @var string
+     */
     protected $url;
 
     /**
-     * CarParkApiClient constructor.
-     *
+     * @var Client
+     */
+    protected $guzzleClient;
+
+    /**
      * @param string $url
      * @param Client $guzzleClient
      */
@@ -29,7 +35,7 @@ class CarParkApiClient implements ApiClient
         $jsonRes = json_decode($res, true);
 
         if (!$jsonRes) {
-            throw new Exception('message:' . var_export($res, true));
+            throw new Exception('Invalid response data:' . var_export($res, true));
         }
 
         return $jsonRes;
