@@ -157,7 +157,9 @@ class Response
      */
     public function setAddress($address)
     {
-        $this->address = $address;
+        if ($address !== 'false') {
+            $this->address = $address;
+        }
         return $this;
     }
 
@@ -175,7 +177,9 @@ class Response
      */
     public function setIsOpened($isOpened)
     {
-        $this->isOpened = $isOpened;
+        if ($isOpened !== 'false') {
+            $this->isOpened = $isOpened;
+        }
         return $this;
     }
 }
