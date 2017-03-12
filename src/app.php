@@ -37,10 +37,10 @@ $app->register(new MonologServiceProvider(), array(
 
 $app->register(new Moust\Silex\Provider\CacheServiceProvider(), array(
     'cache.options' => array(
-        'driver' => 'memcache',
+        'driver' => 'memcached',
         'memcache' => function () {
-            $memcache = new \Memcache();
-            $memcache->connect('localhost', 11211);
+            $memcache = new \Memcached();
+            $memcache->addServer('localhost', 11211);
 
             return $memcache;
         }
