@@ -48,6 +48,6 @@ class QueryParser
             }
         }
 
-        return self::MESSAGE_NOT_UNDERSTOOD;
+        return $this->app['service.place']->ask($query, '');
     }
 }
