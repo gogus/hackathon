@@ -74,8 +74,8 @@ class JourneyService implements ServiceInterface
 
         $to = $this->getLocationByName($matches['to']);
 
-        file_put_contents('debug3', $matches);
-        
+        file_put_contents('debug3', var_export($matches, true));
+
         if (!empty($matches['from'])) {
             $from = $this->getLocationByName($matches['from']);
         } elseif (!empty($matches['location'])) {
