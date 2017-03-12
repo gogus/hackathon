@@ -4,7 +4,6 @@ namespace App\Domain\Service;
 
 use App\Domain\ApiClient\BikeApiClient\Response\Response;
 use App\Domain\ApiClient\BikeApiClient\BikeApiClient;
-use App\Domain\Service\BikeService\Coordinates;
 
 /**
  * Class ApiService
