@@ -74,12 +74,16 @@ class CallbackController
 
                 file_put_contents('debug', var_export($messageDetails, true));
 
-                if (isset($messageDetails['attachments']) && 'location' === $messageDetails['attachments']['type']) {
-                    $query = sprintf(
-                        '%s [%s]',
-                        $this->previousQueryService->get($senderId),
-                        implode(' ', $messageDetails['attachments']['payload']['coordinates'])
-                    );
+                if (!empty($messageDetails['attachments'])) {
+                    $attachment = current($messageDetails['attachments']);
+
+                    if ('location' === $attachment['type']) {
+                        $query = sprintf(
+                            '%s [%s]',
+                            $this->previousQueryService->get($senderId),
+                            implode(' ', $messageDetails['attachments']['payload']['coordinates'])
+                        );
+                    }
                 } else {
                     $this->previousQueryService->save($senderId, $query);
                 }
