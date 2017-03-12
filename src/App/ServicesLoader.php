@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Domain\ApiClient\AddressApiClient\AddressApiClient;
+use App\Domain\ApiClient\BikeApiClient\BikeApiClient;
 use App\Domain\ApiClient\JourneyApiClient\JourneyApiClient;
 use App\Domain\Callback\FacebookMessengerCallback;
 use App\Domain\Callback\Formatter\FormatterFactory;
@@ -75,7 +76,7 @@ class ServicesLoader
         };
 
         $this->app['api.client.bike'] = function () {
-            return new WeatherApiClient(
+            return new BikeApiClient(
                 $this->app['bike.base_uri'],
                 $this->app['bike.timeout'],
                 $this->app['api.client']
