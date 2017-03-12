@@ -49,6 +49,8 @@ class Location
             $name = $address['road'];
         } elseif (isset($address['city_district'])) {
             $name = $address['city_district'];
+        } elseif (isset($address['suburb'])) {
+            $name = $address['suburb'];
         } elseif (isset($address['city'])) {
             $name = $address['city'];
         } elseif (isset($address['country'])) {
