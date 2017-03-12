@@ -10,7 +10,16 @@ class BikeFormatter implements FormatterInterface
      */
     public function format($response)
     {
-        $elements = [];
+        $elements = [
+            'title' => 'Following location does not exists',
+            'buttons' => [
+                [
+                    'type' => 'web_url',
+                    'title' => 'Get more informations',
+                    'url' => 'http://www.velo.lu',
+                ]
+            ]];
+
         $distance = $response->getDistance() ? ' Nearest station is:' . $response->getDistance() . ' m from you location' : '';
         if ($response->getName() && $response->getDocks()) {
             $elements = [
