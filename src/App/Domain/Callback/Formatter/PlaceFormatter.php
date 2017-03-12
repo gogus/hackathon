@@ -14,7 +14,7 @@ class PlaceFormatter implements FormatterInterface
             'title' => 'Following location does not exists'
             ];
 
-        if ($response->getName() && $response->getDocks()) {
+        if ($response->getName()) {
             $elements = [
                 [
                     'title' => 'You chosen ' . $response->getName(),
