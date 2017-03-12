@@ -46,6 +46,8 @@ class JourneyService implements ServiceInterface
         try {
             $journeyQuery = $this->parseQuery($query);
             $route = $this->findRoute($journeyQuery);
+        } catch (LocalizationRequiredException $localizationRequiredException) {
+            throw $localizationRequiredException;
         } catch (\Exception $e) {
             $this->logger->error((string)$e);
 
