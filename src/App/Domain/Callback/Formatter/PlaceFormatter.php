@@ -20,7 +20,7 @@ class PlaceFormatter implements FormatterInterface
             $elements = [
                 [
                     'title' => 'You chosen ' . $response->getName(),
-                    'subtitle' => $response->getDesc() . $response->getAddress(),
+                    'subtitle' => $response->getDesc() . $response->getIsOpened() . $response->getAddress(),
                     'image_url' => $response->getPhoto(),
                     'buttons' => [
                         [
