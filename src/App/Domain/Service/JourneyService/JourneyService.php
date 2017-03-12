@@ -105,7 +105,7 @@ class JourneyService implements ServiceInterface
      */
     private function getCurrentLocation(array $matches)
     {
-        return new Location('Your location', new Coordinates($matches['lat'], $matches['lon']));
+        return new Location('Your location', new Coordinates((float)$matches['lat'], (float)$matches['lon']));
     }
 
     /**
