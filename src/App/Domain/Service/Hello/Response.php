@@ -24,7 +24,7 @@ class Response
     public function __construct($message)
     {
         $this->message = $message;
-        $this->photo = $message;
+        $this->photo = 'http://pix.iemoji.com/images/emoji/apple/ios-9/256/robot-face.png';
     }
 
     /**
