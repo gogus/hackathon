@@ -36,7 +36,7 @@ $app->register(new MonologServiceProvider(), array(
 
 
 $app->register(new Moust\Silex\Provider\CacheServiceProvider(), array(
-    'caches.options' => array(
+    'cache.options' => array(
         'driver' => 'memcache',
         'memcache' => function () {
             $memcache = new \Memcache();
