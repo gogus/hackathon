@@ -15,7 +15,7 @@ class QueryParser
         'weather' => ['weather', 'temperature', 'hot', 'cold'],
         'time'    => ['time', 'current'],
         'carpark' => ['parking', 'park', 'car'],
-        'bike'    => ['bike', 'station', 'bicycle', 'bik', 'bikepoint', 'bikestation'],
+        'bike'    => ['bike', 'station', 'bikes', 'bicycles','bicycle', 'bik', 'bikepoint', 'bikestation'],
         'journey' => ['journey', 'go', 'get', 'bus', 'way', 'route', 'train'],
     ];
 
