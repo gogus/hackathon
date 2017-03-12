@@ -70,6 +70,8 @@ class JourneyService implements ServiceInterface
             throw new \Exception('Query parsing failed');
         }
 
+        file_put_contents('regextest', var_export($matches, true));
+        
         $to = $this->getLocationByName($matches['to']);
 
         if (isset($matches['from'])) {
