@@ -3,7 +3,7 @@
 namespace App\Domain\ApiClient\BikeApiClient\Response;
 
 /**
- * Bike API
+ * BikeService API
  */
 class Response
 {
