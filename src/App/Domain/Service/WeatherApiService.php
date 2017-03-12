@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Domain\Service;
 
 use App\Domain\ApiClient\WeatherApiClient\Response\Response;
-use App\Domain\ApiClient\WeatherApiClient\Response\Weather;
 use App\Domain\ApiClient\WeatherApiClient\WeatherApiClient;
 use App\Domain\ApiClient\ApiClient;
 
@@ -18,20 +18,14 @@ class WeatherApiService implements ServiceInterface
     protected $apiWeatherClient;
 
     /**
-     * ApiService constructor.
-     * @param $apiWeatherClient
+     * @param ApiClient $apiClient
      */
     public function __construct(ApiClient $apiClient)
     {
         $this->apiWeatherClient = $apiClient;
     }
 
-
-    /**
-     * @param null $query
-     * @return Weather
-     */
-    public function ask($query = null)
+    public function ask($query = null, $token = '')
     {
         $data = $this->apiWeatherClient->makeCall();
         $dataEntity = Response::fromArray($data);

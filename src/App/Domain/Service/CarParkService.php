@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Domain\Service\CarParkService;
+namespace App\Domain\Service;
 
 use App\Domain\ApiClient\CarParkApiClient\Parking;
 use App\Domain\ApiClient\CarParkApiClient\Response;
 use App\Domain\ApiClient\ApiClient;
-use App\Domain\Service\ServiceInterface;
 
 class CarParkService implements ServiceInterface
 {
@@ -21,31 +20,33 @@ class CarParkService implements ServiceInterface
         $this->apiCarParkClient = $apiClient;
     }
 
-    public function ask($query = null)
+    public function ask($query = null, $token = '')
     {
         $data = $this->apiCarParkClient->makeCall();
 
         $allParkings = Response::fromArray($data['features']);
 
-        return $this->findParkingByQuery($allParkings, $query);
+        return $this->findParkingByQuery($allParkings, $query, $token);
     }
 
     /**
      * @param Response $parkings
      * @param string   $query
      *
+     * @param          $token
+     *
      * @return Parking|string
      */
-    private function findParkingByQuery(Response $parkings, $query = '')
+    private function findParkingByQuery(Response $parkings, $query = '', $token)
     {
-        $query = strtolower($query);
-
         if (empty($query))
         {
             return $this->findClosestParking($parkings);
         }
 
-        $parking = $this->findRecursive($parkings->getParkings(), $query);
+        $query = strtolower($query);
+
+        $parking = $this->findRecursive($parkings->getParkings(), $query, $token);
         if ($parking !== false)
         {
             return $parking;
@@ -73,11 +74,11 @@ class CarParkService implements ServiceInterface
      *
      * @return bool|Parking
      */
-    private function findRecursive($parkings, $query)
+    private function findRecursive($parkings, $query, $token)
     {
-        $pos = strpos($query, 'parking');
+        $pos = strpos($query, $token);
         $head = trim(substr($query, 0, $pos));
-        $tail = trim(substr($query, $pos + 7));
+        $tail = trim(substr($query, $pos + strlen($token)));
 
         $parking = false;
         if (!empty($head)) {
