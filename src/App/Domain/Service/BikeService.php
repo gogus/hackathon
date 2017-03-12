@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Domain\Service;
 
 use App\Domain\ApiClient\BikeApiClient\Response\Response;
@@ -17,19 +18,14 @@ class BikeApiService implements ServiceInterface
     protected $bikeApiClient;
 
     /**
-     * ApiService constructor.
-     * @param $bikeApiClient
+     * @param BikeApiClient $bikeApiClient
      */
     public function __construct(BikeApiClient $bikeApiClient)
     {
         $this->bikeApiClient = $bikeApiClient;
     }
 
-    /**
-     * @param null $query
-     * @return Response
-     */
-    public function ask($query = null)
+    public function ask($query = null, $token = '')
     {
         if (empty($query)) {
             return '';

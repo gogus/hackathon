@@ -5,6 +5,7 @@ namespace App\Domain\ApiClient\BikeApiClient;
 use App\Domain\ApiClient\ApiClient;
 use Exception;
 use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 
 class BikeApiClient implements ApiClient
 {

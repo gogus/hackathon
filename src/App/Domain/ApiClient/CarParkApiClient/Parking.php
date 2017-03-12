@@ -3,8 +3,7 @@
 namespace App\Domain\ApiClient\CarParkApiClient;
 
 /**
- * Class Parking
- * @package App\Domain\ApiClient\CarParkApiClient\Response
+ * Parking area
  */
 class Parking
 {
@@ -12,68 +11,79 @@ class Parking
      * @var string Name
      */
     protected $name;
+
     /**
      * @var int totalSpaces
      */
     protected $totalSpaces;
+
     /**
      * @var int freeSpaces
      */
     protected $freeSpaces;
+
     /**
      * @var string address
      */
     protected $address;
 
     /**
-     * @param $data
+     * @param string $name
+     * @param int    $totalSpaces
+     * @param int    $freeSpaces
+     * @param string $address
      */
-    public function __construct(array $data)
+    public function __construct($name, $totalSpaces, $freeSpaces, $address)
     {
-        $this->name         = $data['properties']['name'];
-        $this->totalSpaces  = $data['properties']['total'];
-        $this->freeSpaces   = $data['properties']['free'];
-        $this->address      = $data['properties']['meta']['address']['street'];
+        $this->name = $name;
+        $this->totalSpaces = $totalSpaces;
+        $this->freeSpaces = $freeSpaces;
+        $this->address = $address;
     }
-
 
     /**
      * @param array $data
-     * @return Parking
+     *
+     * @return self
      */
     public static function fromArray(array $data)
     {
-        return new self($data);
+        return new self(
+            $data['properties']['name'],
+            $data['properties']['total'],
+            $data['properties']['free'],
+            $data['properties']['meta']['address']['street']
+        );
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getParkingName()
+    public function getName()
     {
         return $this->name;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getParkingTotalSpaces()
+    public function getTotalSpaces()
     {
-        return $this->getParkingTotalSpaces();
+        return $this->getTotalSpaces();
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getParkingFreeSpaces()
+    public function getFreeSpaces()
     {
         return $this->freeSpaces;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getParkingAddress()
+    public function getAddress()
     {
         return $this->address;
     }
