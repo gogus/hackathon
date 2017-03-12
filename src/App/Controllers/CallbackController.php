@@ -81,7 +81,7 @@ class CallbackController
                         $query = sprintf(
                             '%s [%s]',
                             $this->previousQueryService->get($senderId),
-                            implode(' ', $messageDetails['attachments']['payload']['coordinates'])
+                            implode(' ', $attachment['payload']['coordinates'])
                         );
                     }
                 } else {
