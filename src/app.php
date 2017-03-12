@@ -34,6 +34,19 @@ $app->register(new MonologServiceProvider(), array(
     "monolog.name" => "application"
 ));
 
+
+$app->register(new Moust\Silex\Provider\CacheServiceProvider(), array(
+    'caches.options' => array(
+        'driver' => 'memcache',
+        'memcache' => function () {
+            $memcache = new \Memcache();
+            $memcache->connect('localhost', 11211);
+
+            return $memcache;
+        }
+    )
+));
+
 //load services
 $servicesLoader = new App\ServicesLoader($app);
 $servicesLoader->bindServicesIntoContainer();

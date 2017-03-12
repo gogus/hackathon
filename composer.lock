@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "3bab50abfde221e2ecb6055657c17e5b",
-    "content-hash": "ee18a08999afbf9f16352f7125d509f8",
+    "hash": "6ce9ceb81305817bf21d9cf339ead5ba",
+    "content-hash": "e178cb844a6bcafe33b600d22e959388",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -774,6 +774,59 @@
             "time": "2016-11-26 00:15:39"
         },
         {
+            "name": "moust/silex-cache",
+            "version": "v2.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moust/silex-cache-service-provider.git",
+                "reference": "83fafcb7b9f382bc1f76dbe6ec30f4a1161822ba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moust/silex-cache-service-provider/zipball/83fafcb7b9f382bc1f76dbe6ec30f4a1161822ba",
+                "reference": "83fafcb7b9f382bc1f76dbe6ec30f4a1161822ba",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "pimple/pimple": "~3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.5",
+                "silex/silex": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Moust\\Silex": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Quentin Aupetit",
+                    "email": "qaupetit@gmail.com"
+                }
+            ],
+            "description": "Cache service provider for Silex application",
+            "keywords": [
+                "cache",
+                "library",
+                "provider",
+                "service",
+                "silex"
+            ],
+            "time": "2016-07-18 16:58:47"
+        },
+        {
             "name": "nesbot/carbon",
             "version": "1.22.1",
             "source": {
@@ -1506,6 +1559,56 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "chh/cache-service-provider",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/CHH/cache-service-provider.git",
+                "reference": "dac50d1cfb6c5c1f61aa6cce316351eb23dcda75"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/CHH/cache-service-provider/zipball/dac50d1cfb6c5c1f61aa6cce316351eb23dcda75",
+                "reference": "dac50d1cfb6c5c1f61aa6cce316351eb23dcda75",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/cache": "^1.0",
+                "php": ">=5.5.0",
+                "silex/silex": "^2.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "CHH\\Silex\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christoph Hochstrasser",
+                    "email": "christoph.hochstrasser@gmail.com"
+                }
+            ],
+            "description": "Provides easy to use caching for Silex applications, built on top of the doctrine/cache package",
+            "keywords": [
+                "cache",
+                "silex"
+            ],
+            "time": "2016-11-22 15:05:28"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.0.5",

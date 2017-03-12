@@ -4,6 +4,7 @@ namespace App\Domain\Service\JourneyService;
 
 use App\Domain\ApiClient\AddressApiClient\AddressApiClient;
 use App\Domain\ApiClient\JourneyApiClient\JourneyApiClient;
+use App\Domain\Exception\LocalizationRequiredException;
 use App\Domain\Service\ServiceInterface;
 use Psr\Log\LoggerInterface;
 
@@ -63,7 +64,7 @@ class JourneyService implements ServiceInterface
     private function parseQuery($query)
     {
         $matches = [];
-        $matched = preg_match('/(journey|go|get|bus|way|route|train)\s+(?:from\s+?(?<from>.*)\s+)?(?:to\s+?(?<to>.*))/', $query, $matches);
+        $matched = preg_match('/(journey|go|get|bus|way|route|train)\s+(?:from\s+?(?<from>.*)\s+)?(?:to\s+?(?<to>.*))(?<location>\[(?<lat>.*) (?<lon>.*)\])/', $query, $matches);
 
         if ($matched === false || $matched == 0 || !isset($matches['to'])) {
             throw new \Exception('Query parsing failed');
@@ -73,8 +74,10 @@ class JourneyService implements ServiceInterface
 
         if (isset($matches['from'])) {
             $from = $this->getLocationByName($matches['from']);
+        } elseif (isset($matches['location'])) {
+            $to = $this->getCurrentLocation($matches);
         } else {
-            $from = $this->getCurrentLocation();
+            throw new LocalizationRequiredException();
         }
 
         return new Query($from, $to);
@@ -91,11 +94,13 @@ class JourneyService implements ServiceInterface
     }
 
     /**
+     * @param array $matches
+     *
      * @return Location
      */
-    private function getCurrentLocation()
+    private function getCurrentLocation(array $matches)
     {
-        return new Location('Boulevard Pierre Dupong', new Coordinates(49.5105111, 5.9952203));
+        return new Location('Your location', new Coordinates($matches['lat'], $matches['lon']));
     }
 
     /**

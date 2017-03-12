@@ -4,8 +4,9 @@ namespace App\Controllers;
 
 use App\Domain\Callback\FacebookMessengerCallback;
 use App\Domain\Callback\Formatter\FormatterFactory;
-use App\Domain\Callback\Formatter\FormatterInterface;
+use App\Domain\Exception\LocalizationRequiredException;
 use App\Domain\QueryParser;
+use App\Services\PreviousQueryService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
@@ -29,19 +30,27 @@ class CallbackController
     protected $responseFormatterFactory;
 
     /**
+     * @var PreviousQueryService
+     */
+    protected $previousQueryService;
+
+    /**
      * @param FacebookMessengerCallback $facebookMessengerCallback
-     * @param QueryParser               $queryParserService
-     * @param FormatterFactory          $responseFormatterFactory
+     * @param QueryParser $queryParserService
+     * @param FormatterFactory $responseFormatterFactory
+     * @param PreviousQueryService $previousQueryService
      */
     public function __construct(
         FacebookMessengerCallback $facebookMessengerCallback,
         QueryParser $queryParserService,
-        FormatterFactory $responseFormatterFactory
+        FormatterFactory $responseFormatterFactory,
+        PreviousQueryService $previousQueryService
     )
     {
         $this->facebookMessengerCallback = $facebookMessengerCallback;
         $this->queryParserService = $queryParserService;
         $this->responseFormatterFactory = $responseFormatterFactory;
+        $this->previousQueryService = $previousQueryService;
     }
 
     /**
@@ -59,9 +68,33 @@ class CallbackController
             $messages = $entry['messaging'];
 
             foreach ($messages as $message) {
-                $response = $this->queryParserService->queryParse($message['message']['text']);
-                $formatted = $this->responseFormatterFactory->format($response);
-                $this->facebookMessengerCallback->sendMessage($message['sender']['id'], $formatted);
+                $senderId       = $message['sender']['id'];
+                $messageDetails = $message['message'];
+                $query          = $messageDetails['text'] ?: null;
+
+                if (isset($messageDetails['attachments']) && 'location' === $messageDetails['attachments']['type']) {
+                    $query = sprintf(
+                        '%s [%s]',
+                        $this->previousQueryService->get($senderId),
+                        implode(' ', $messageDetails['attachments']['payload']['coordinates'])
+                    );
+                } else {
+                    $this->previousQueryService->save($senderId, $query);
+                }
+
+                try {
+                    $response = $this->queryParserService->queryParse($query);
+                    $formatted = $this->responseFormatterFactory->format($response);
+                } catch (LocalizationRequiredException $localizationRequiredException) {
+                    $formatted = [
+                        'text' => 'Please share your location.',
+                        'quick_replies' => [
+                            'content_type' => 'location'
+                        ]
+                    ];
+                }
+
+                $this->facebookMessengerCallback->sendMessage($senderId, $formatted);
             }
         }
 

@@ -6,10 +6,10 @@ use App\Domain\ApiClient\AddressApiClient\AddressApiClient;
 use App\Domain\ApiClient\JourneyApiClient\JourneyApiClient;
 use App\Domain\Callback\FacebookMessengerCallback;
 use App\Domain\Callback\Formatter\FormatterFactory;
-use App\Domain\Callback\Formatter\StringFormatter;
 use App\Domain\QueryParser;
 use App\Domain\Service\JourneyService\JourneyService;
 use App\Domain\Service\TimeService;
+use App\Services\PreviousQueryService;
 use GuzzleHttp\Client;
 use Silex\Application;
 use App\Domain\Service\WeatherApiService;
@@ -40,6 +40,12 @@ class ServicesLoader
     {
         $this->app['api.client'] = function () {
             return new Client();
+        };
+
+        $this->app['previous_query.service'] = function () {
+            return new PreviousQueryService(
+                $this->app['cache']
+            );
         };
 
         $this->app['facebook.messenger.service'] = function () {

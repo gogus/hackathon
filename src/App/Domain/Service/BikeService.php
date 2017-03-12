@@ -31,7 +31,6 @@ class BikeApiService implements ServiceInterface
      */
     public function ask($query = null)
     {
-
         $data = $this->bikeApiClient->makeCall('/');
         $dataEntity = Response::fromArray($data);
 

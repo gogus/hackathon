@@ -31,7 +31,8 @@ class RoutesLoader
             return new Controllers\CallbackController(
                 $this->app['facebook.messenger.service'],
                 $this->app['query.parser.service'],
-                $this->app['facebook.formatter']
+                $this->app['facebook.formatter'],
+                $this->app['previous_query.service']
             );
         };
     }
