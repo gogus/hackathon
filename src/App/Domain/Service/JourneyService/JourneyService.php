@@ -71,7 +71,8 @@ class JourneyService implements ServiceInterface
         }
 
         file_put_contents('regextest', var_export($matches, true));
-        
+        file_put_contents('regextest2', var_export($matches['to'], true));
+
         $to = $this->getLocationByName($matches['to']);
 
         if (isset($matches['from'])) {
