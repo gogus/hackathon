@@ -45,7 +45,7 @@ class PlaceApiClient implements ApiClient
             throw new Exception('message:' . var_export($res,true));
         }
         $response['photo'] = $jsonRes['results'][0]['photos'][0]['photo_reference'];
-        $response['photo'] = 'https://maps.googleapis.com/maps/api/place/photo?photoreference='.$jsonRes['results'][0]['photos'][0]['photo_reference'].'&key=AIzaSyClXr-C6_i6edx5e3eoxQAkZccCM93jun4';
+        $response['photo'] = 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=1000&photoreference='.$jsonRes['results'][0]['photos'][0]['photo_reference'].'&key=AIzaSyClXr-C6_i6edx5e3eoxQAkZccCM93jun4';
         $response['name'] = $jsonRes['results'][0]['name'];
         $response['link'] = 'https://www.google.lu/maps/search/'. $response['name'];
 
