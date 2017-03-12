@@ -15,8 +15,8 @@ use Silex\Application;
 use App\Domain\Service\WeatherApiService;
 use App\Domain\ApiClient\WeatherApiClient\WeatherApiClient;
 use App\Domain\ApiClient\CarParkApiClient\CarParkApiClient;
-use App\Domain\Service\CarParkApiService;
-
+use App\Domain\Service\CarParkService;
+use App\Domain\Service\BikeService;
 
 class ServicesLoader
 {
@@ -110,11 +110,11 @@ class ServicesLoader
         };
 
         $this->app['service.carpark'] = function () {
-            return new CarParkApiService($this->app['api.client.carpark']);
+            return new CarParkService($this->app['api.client.carpark']);
         };
 
         $this->app['service.bike'] = function () {
-            return new WeatherApiService($this->app['api.client.bike']);
+            return new BikeService($this->app['api.client.bike']);
         };
 
         $this->app['service.journey'] = function () {

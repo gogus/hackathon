@@ -41,7 +41,7 @@ class JourneyService implements ServiceInterface
         $this->logger = $logger;
     }
 
-    public function ask($query)
+    public function ask($query = null, $token = '')
     {
         try {
             $journeyQuery = $this->parseQuery($query);

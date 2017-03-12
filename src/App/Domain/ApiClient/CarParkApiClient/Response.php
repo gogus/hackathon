@@ -3,11 +3,9 @@
 namespace App\Domain\ApiClient\CarParkApiClient;
 
 /**
+ * Parking service response.
  * Some of the data was skipped intentionally.
- */
-
-/**
- * Class Response
+ *
  * @package App\Domain\ApiClient\CarParkApiClient\Response
  */
 class Response
@@ -15,20 +13,29 @@ class Response
     /**
      * @var Parking[]
      */
-    protected $parkings = [];
+    protected $parkings;
 
     /**
-     * @param array $data
+     * @param Parking[] $parkings
+     */
+    public function __construct(array $parkings = [])
+    {
+        $this->parkings = $parkings;
+    }
+
+    /**
+     * @param array $parkings
      *
      * @return Response
      */
-    public static function fromArray(array $data)
+    public static function fromArray(array $parkings)
     {
         $response = new self();
 
-        foreach ($data as $row)
+        foreach ($parkings as $parking)
         {
-            $response->parkings[] = new Parking($row);
+            $parkingArea = Parking::fromArray($parking);
+            $response->parkings[strtolower($parkingArea->getName())] = $parkingArea;
         }
 
         return $response;

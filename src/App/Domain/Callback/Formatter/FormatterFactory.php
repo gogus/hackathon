@@ -3,6 +3,7 @@
 namespace App\Domain\Callback\Formatter;
 
 use App\Domain\ApiClient\WeatherApiClient\Response\Response;
+use App\Domain\ApiClient\BikeApiClient\Response\Response as BikeResponse;
 
 /**
  * Class FormatterFactory
@@ -20,6 +21,8 @@ class FormatterFactory
     {
         if ($response instanceof Response) {
             $formatter = new GenericFormatter();
+        } elseif ($response instanceof BikeResponse) {
+            $formatter = new BikeFormatter();
         } else {
             $formatter = new StringFormatter();
         }
