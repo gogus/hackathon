@@ -28,11 +28,18 @@ class Response
     private $availableEbikes;
 
     /**
-     * Statuses
+     * Distance
      *
-     * @var array[]
+     * @var string
      */
-    private $dockStatus;
+    private $distance;
+
+    /**
+     * Address
+     *
+     * @var string
+     */
+    private $address;
 
     /**
      * Response constructor.
@@ -47,13 +54,19 @@ class Response
         $docks,
         $availableBikes,
         $availableEbikes,
-        $dockStatus
+        $availableDocks,
+        $distance,
+        $address,
+        $name
     ) {
         $this->photo = $photo;
         $this->docks = $docks;
         $this->availableBikes = $availableBikes;
         $this->availableEbikes = $availableEbikes;
-        $this->dockStatus = $dockStatus;
+        $this->availableDocks = $availableDocks;
+        $this->distance = $distance;
+        $this->address = $address;
+        $this->name = $name;
     }
 
     /**
@@ -63,12 +76,16 @@ class Response
      */
     public static function fromArray(array $data)
     {
+        $bike = $data['features'][0]['properties'];
         return new self(
-            $data['photo'],
-            $data['docks'],
-            $data['availableBikes'],
-            $data['availableEbikes'],
-            $data['dockStatus']
+            $bike['photo'],
+            $bike['docks'],
+            $bike['available_bikes'],
+            $bike['available_ebikes'],
+            $bike['available_docks'],
+            $bike['distance'],
+            $bike['address'],
+            $bike['name']
         );
     }
 
@@ -145,21 +162,74 @@ class Response
     }
 
     /**
-     * @return \array[]
+     * @return mixed
      */
-    public function getDockStatus()
+    public function getAddress()
     {
-        return $this->dockStatus;
+        return $this->address;
     }
 
     /**
-     * @param \array[] $dockStatus
+     * @param mixed $address
      * @return Response
      */
-    public function setDockStatus($dockStatus)
+    public function setAddress($address)
     {
-        $this->dockStatus = $dockStatus;
+        $this->address = $address;
         return $this;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAvailableDocks()
+    {
+        return $this->availableDocks;
+    }
+
+    /**
+     * @param mixed $availableDocks
+     * @return Response
+     */
+    public function setAvailableDocks($availableDocks)
+    {
+        $this->availableDocks = $availableDocks;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDistance()
+    {
+        return (int)$this->distance;
+    }
+
+    /**
+     * @param mixed $distance
+     * @return Response
+     */
+    public function setDistance($distance)
+    {
+        $this->distance = $distance;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
+
 
 }

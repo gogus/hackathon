@@ -12,13 +12,13 @@ class BikeFormatter implements FormatterInterface
     {
         $elements = [
             [
-                'title' => 'In following station we have ' . $response->getAvailableBikes() . ' free bikes ',
-                'subtitle' => ' ' . $response->getAvailableEbikes() . ' free e-bikes , ' . '  ' . $response->getPhoto() . ' ' . $response->getDocks(),
-                'image_url' => 'http://shootandscrawl.com/wp-content/uploads/2011/08/veloh.jpg',
+                'title' => 'In station ' . $response->getName() .' we have ' . $response->getAvailableBikes() . ' free bikes ',
+                'subtitle' => ' ' . $response->getAvailableEbikes() . ' free e-bikes , all docks in station: ' . $response->getDocks() . ' Nearest station is:' . $response->getDistance() .'m from you located on' . '  ' . $response->getAddress(),
+                'image_url' => $response->getPhoto(),
                 'buttons' => [
                     [
                         'type' => 'web_url',
-                        'title' => 'Get properties',
+                        'title' => 'Get more informations',
                         'url' => 'http://www.velo.lu',
                     ]
                 ]
