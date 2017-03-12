@@ -1,4 +1,4 @@
-# Whatever API
+# Whatever API [![Build Status](https://travis-ci.com/gogus/hackathon.svg?token=aZFnXTyVrAijqxxMAS3r&branch=master)](https://travis-ci.com/gogus/hackathon)
 
 # Installation
 

@@ -72,8 +72,6 @@ class CallbackController
                 $messageDetails = $message['message'];
                 $query          = $messageDetails['text'] ?: null;
 
-                file_put_contents('debug', var_export($messageDetails, true));
-
                 if (!empty($messageDetails['attachments'])) {
                     $attachment = current($messageDetails['attachments']);
 
@@ -87,8 +85,6 @@ class CallbackController
                 } else {
                     $this->previousQueryService->save($senderId, $query);
                 }
-
-                file_put_contents('debug2', var_export($query, true));
 
                 try {
                     $response = $this->queryParserService->queryParse($query);

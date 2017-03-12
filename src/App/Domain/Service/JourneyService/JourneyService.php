@@ -74,13 +74,11 @@ class JourneyService implements ServiceInterface
 
         $to = $this->getLocationByName($matches['to']);
 
-        file_put_contents('debug4', $query);
-        file_put_contents('debug3', var_export($matches, true));
 
         if (!empty($matches['from'])) {
             $from = $this->getLocationByName($matches['from']);
         } elseif (!empty($matches['location'])) {
-            $to = $this->getCurrentLocation($matches);
+            $from = $this->getCurrentLocation($matches);
         } else {
             throw new LocalizationRequiredException();
         }
@@ -105,7 +103,7 @@ class JourneyService implements ServiceInterface
      */
     private function getCurrentLocation(array $matches)
     {
-        return new Location('Your location', new Coordinates($matches['lat'], $matches['lon']));
+        return new Location('Your location', new Coordinates((float)$matches['lat'], (float)$matches['lon']));
     }
 
     /**

@@ -34,9 +34,9 @@ class QueryParser
      */
     public function queryParse($query)
     {
+        $query = strtolower($query);
         $query = preg_replace('/[^a-zA-Z \[\]\.0-9]+/', "", $query);
         $words = explode(' ', $query);
-        $words = array_map('strtolower', $words);
 
         foreach (static::$services as $serviceName => $service) {
             foreach ($service as $word) {

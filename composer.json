@@ -10,7 +10,6 @@
 	"require": {
 		"silex/silex": "~2.0",
 		"monolog/monolog": "~1.11",
-		"doctrine/dbal": "~2.5",
 		"nesbot/Carbon": "~1.21",
 		"euskadi31/cors-service-provider": "~1.0",
 		"guzzlehttp/guzzle": "^6.2",
