@@ -64,6 +64,10 @@ class CallbackController
         $entries = $input['entry'];
 
         foreach ($entries as $entry) {
+            if (strtotime($entry['timestamp']) < strtotime("-5 minutes")) {
+                continue;
+            }
+
             /** @var array $messages */
             $messages = $entry['messaging'];
 
