@@ -10,7 +10,7 @@ use App\Domain\Service\BikeService\Coordinates;
  * Class ApiService
  * @package App\Domain\Service
  */
-class BikeApiService implements ServiceInterface
+class BikeService implements ServiceInterface
 {
     /**
      * @var BikeApiClient

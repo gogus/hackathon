@@ -15,7 +15,7 @@ use App\Domain\Service\WeatherApiService;
 use App\Domain\ApiClient\WeatherApiClient\WeatherApiClient;
 use App\Domain\ApiClient\CarParkApiClient\CarParkApiClient;
 use App\Domain\Service\CarParkService;
-
+use App\Domain\Service\BikeService;
 
 class ServicesLoader
 {
@@ -107,7 +107,7 @@ class ServicesLoader
         };
 
         $this->app['service.bike'] = function () {
-            return new WeatherApiService($this->app['api.client.bike']);
+            return new BikeService($this->app['api.client.bike']);
         };
 
         $this->app['service.journey'] = function () {
