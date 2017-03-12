@@ -3,7 +3,6 @@
 namespace App\Domain\Service;
 
 use App\Domain\ApiClient\CarParkApiClient\Parking;
-use App\Domain\ApiClient\CarParkApiClient\Response;
 use App\Domain\ApiClient\ApiClient;
 
 class CarParkService implements ServiceInterface
@@ -24,58 +23,61 @@ class CarParkService implements ServiceInterface
     {
         $data = $this->apiCarParkClient->makeCall();
 
-        $allParkings = Response::fromArray($data['features']);
+        $parkings = [];
+        foreach ($data['features'] as $p) {
+            $park = $p['properties'];
+            $parkings[strtolower($park['name'])] = $park;
+        }
+        unset($data);
 
-        return $this->findParkingByQuery($allParkings, $query, $token);
+        $parking = $this->findParkingByQuery($parkings, $query, $token);
+
+        return $parking;
     }
 
     /**
-     * @param Response $parkings
-     * @param string   $query
+     * @param array  $parkings
+     * @param string $query
+     * @param string $token
      *
-     * @param          $token
-     *
-     * @return Parking|string
+     * @return array|string
      */
-    private function findParkingByQuery(Response $parkings, $query = '', $token)
+    private function findParkingByQuery(array $parkings, $query = '', $token)
     {
-        if (empty($query))
-        {
+        if (empty($query)) {
             return $this->findClosestParking($parkings);
         }
 
         $query = strtolower($query);
 
-        $parking = $this->findRecursive($parkings->getParkings(), $query, $token);
-        if ($parking !== false)
-        {
-            return $parking;
+        $parking = $this->findRecursive($parkings, $query, $token);
+        if ($parking !== false) {
+            return Parking::fromArray($parking);
         }
 
         return 'Parking spot not found';
     }
 
     /**
-     * @param Response $parkings
+     * @param array $parkings
      *
-     * @return Parking
+     * @return array
      */
-    private function findClosestParking(Response $parkings)
+    private function findClosestParking(array $parkings)
     {
-        $allParkings = $parkings->getParkings();
-        $closest = array_shift($allParkings);
+        $closest = array_shift($parkings);
 
         return $closest;
     }
 
     /**
-     * @param Parking[] $parkings
-     * @param string    $query
-     * @param string    $token
+     * @param array  $parkings
+     * @param string $query
+     * @param string $token
      *
-     * @return Parking|bool
+     * @return array|false
      */
-    private function findRecursive($parkings, $query, $token)
+    private function findRecursive(array $parkings, $query, $token)
     {
         $pos = strpos($query, $token);
         $head = trim(substr($query, 0, $pos));
@@ -96,21 +98,19 @@ class CarParkService implements ServiceInterface
     /**
      * Sorry, brain damage
      *
-     * @param Parking[] $parkings
-     * @param array     $words
+     * @param array $parkings
+     * @param array $words
      *
-     * @return bool|Parking
+     * @return array|false
      */
     private function recur(array $parkings, array $words)
     {
-        if (empty($parkings) || empty($words))
-        {
+        if (empty($parkings) || empty($words)) {
             return false;
         }
 
         $name = implode(' ', $words);
-        if (array_key_exists($name, $parkings))
-        {
+        if (array_key_exists($name, $parkings)) {
             return $parkings[$name];
         }
 
