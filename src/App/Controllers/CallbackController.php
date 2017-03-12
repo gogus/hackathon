@@ -72,6 +72,8 @@ class CallbackController
                 $messageDetails = $message['message'];
                 $query          = $messageDetails['text'] ?: null;
 
+                file_put_contents('debug', var_export($messageDetails, true));
+
                 if (isset($messageDetails['attachments']) && 'location' === $messageDetails['attachments']['type']) {
                     $query = sprintf(
                         '%s [%s]',
@@ -81,6 +83,8 @@ class CallbackController
                 } else {
                     $this->previousQueryService->save($senderId, $query);
                 }
+
+                file_put_contents('debug2', var_export($query, true));
 
                 try {
                     $response = $this->queryParserService->queryParse($query);
