@@ -34,7 +34,7 @@ class QueryParser
      */
     public function queryParse($query)
     {
-        $query = preg_replace('/[^a-zA-Z \[\]\.]+/', "", $query);
+        $query = preg_replace('/[^a-zA-Z \[\]\.0-9]+/', "", $query);
         $words = explode(' ', $query);
         $words = array_map('strtolower', $words);
 
