@@ -50,7 +50,8 @@ class Response
         $name,
         $isOpened,
         $address
-    ) {
+    )
+    {
         $this->photo = $photo;
         $this->desc = $desc;
         $this->link = $link;
@@ -177,8 +178,12 @@ class Response
      */
     public function setIsOpened($isOpened)
     {
-        if ($isOpened !== 'false') {
-            $this->isOpened = $isOpened;
+        if ($isOpened === 'false') {
+            $this->isOpened = '';
+        } elseif ($isOpened === false) {
+            $this->isOpened = " Now it's closed ";
+        } else {
+            $this->isOpened = " Now it's opened ";
         }
         return $this;
     }
