@@ -66,13 +66,15 @@ class JourneyService implements ServiceInterface
     private function parseQuery($query)
     {
         $matches = [];
-        $matched = preg_match('/(journey|go|get|bus|way|route|train)\s+(?:from\s+?(?<from>.*)\s+)?(?:to\s+?(?<to>.*))(?<location>\[(?<lat>.*) (?<lon>.*)\])?/', $query, $matches);
+        $matched = preg_match('/(journey|go|get|bus|way|route|train)\s+(?:from\s+?(?<from>.*)\s+)?(?:to\s+?(?<to>[a-zA-Z 0-9]+))(?<location>\[(?<lat>.*) (?<lon>.*)\])?/', $query, $matches);
 
         if ($matched === false || $matched == 0 || !isset($matches['to'])) {
             throw new \Exception('Query parsing failed');
         }
 
         $to = $this->getLocationByName($matches['to']);
+
+        file_put_contents('debug3', var_export($matches, true));
 
         if (!empty($matches['from'])) {
             $from = $this->getLocationByName($matches['from']);

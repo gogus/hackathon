@@ -72,15 +72,23 @@ class CallbackController
                 $messageDetails = $message['message'];
                 $query          = $messageDetails['text'] ?: null;
 
-                if (isset($messageDetails['attachments']) && 'location' === $messageDetails['attachments']['type']) {
-                    $query = sprintf(
-                        '%s [%s]',
-                        $this->previousQueryService->get($senderId),
-                        implode(' ', $messageDetails['attachments']['payload']['coordinates'])
-                    );
+                file_put_contents('debug', var_export($messageDetails, true));
+
+                if (!empty($messageDetails['attachments'])) {
+                    $attachment = current($messageDetails['attachments']);
+
+                    if ('location' === $attachment['type']) {
+                        $query = sprintf(
+                            '%s [%s]',
+                            $this->previousQueryService->get($senderId),
+                            implode(' ', $attachment['payload']['coordinates'])
+                        );
+                    }
                 } else {
                     $this->previousQueryService->save($senderId, $query);
                 }
+
+                file_put_contents('debug2', var_export($query, true));
 
                 try {
                     $response = $this->queryParserService->queryParse($query);
@@ -89,7 +97,7 @@ class CallbackController
                     $formatted = [
                         'text' => 'Please share your location.',
                         'quick_replies' => [
-                            'content_type' => 'location'
+                            ['content_type' => 'location']
                         ]
                     ];
                 }
