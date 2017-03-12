@@ -48,7 +48,7 @@ class PlaceApiClient implements ApiClient
         $response['name']     = $jsonRes['results'][0]['name'];
         $response['link']     = 'https://www.google.lu/maps/search/'. $response['name'];
         $response['address'] = isset($jsonRes['results'][0]['formatted_address'])?$jsonRes['results'][0]['formatted_address']:'false';
-        $response['isOpened'] = isset($jsonRes['results'][0]['opening_hours']['open_now'])?$jsonRes['results'][0]['opening_hours']['open_now']:'false';
+        $response['isOpened'] = isset($jsonRes['results'][0]['opening_hours']['open_now'])?(boolean)$jsonRes['results'][0]['opening_hours']['open_now']:'false';
 
         return $response;
     }

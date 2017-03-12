@@ -18,6 +18,7 @@ class QueryParser
         'bike'    => ['bike', 'station', 'bikes', 'bicycles','bicycle', 'bik', 'bikepoint', 'bikestation'],
         'journey' => ['journey', 'go', 'get', 'bus', 'way', 'route', 'train'],
         'place'   => ['place', 'places', 'monument', 'attraction', 'attractions'],
+        'hello'   => ['hi', 'hello', 'meet', 'doing'],
     ];
 
     /**

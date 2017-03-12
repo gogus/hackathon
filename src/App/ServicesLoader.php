@@ -20,6 +20,7 @@ use App\Domain\Service\CarParkService;
 use App\Domain\Service\BikeService;
 use App\Domain\ApiClient\PlaceApiClient\PlaceApiClient;
 use App\Domain\Service\PlaceService;
+use App\Domain\Service\HelloService;
 
 class ServicesLoader
 {
@@ -113,6 +114,10 @@ class ServicesLoader
 
         $this->app['service.time'] = function () {
             return new TimeService();
+        };
+
+        $this->app['service.hello'] = function () {
+            return new HelloService();
         };
 
         //Domain Services

@@ -173,6 +173,7 @@ class Response
     }
 
     /**
+     *
      * @param string $isOpened
      * @return Response
      */
@@ -180,7 +181,7 @@ class Response
     {
         if ($isOpened === 'false') {
             $this->isOpened = '';
-        } elseif ($isOpened === false) {
+        } elseif ($isOpened == false) {
             $this->isOpened = " Now it's closed ";
         } else {
             $this->isOpened = " Now it's opened ";
