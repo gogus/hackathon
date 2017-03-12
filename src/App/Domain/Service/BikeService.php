@@ -31,7 +31,7 @@ class BikeService implements ServiceInterface
         }
 
         $matches = [];
-        preg_match('/(?:from\s+?(?<from>.*)\s+)/', $query, $matches);
+        preg_match('/(?:from\s+?(?<from>.*))/', $query, $matches);
 
         if (isset($matches['from'])) {
             $from = $this->getBikeStationByName($matches['from']);
