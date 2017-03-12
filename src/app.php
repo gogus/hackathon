@@ -38,9 +38,9 @@ $app->register(new MonologServiceProvider(), array(
 $app->register(new Moust\Silex\Provider\CacheServiceProvider(), array(
     'cache.options' => array(
         'driver' => 'memcached',
-        'memcache' => function () {
+        'memcache' => function () use ($app) {
             $memcache = new \Memcached();
-            $memcache->addServer('localhost', 11211);
+            $memcache->addServer($app['memcache'], 11211);
 
             return $memcache;
         }

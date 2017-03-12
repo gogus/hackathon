@@ -14,6 +14,8 @@ $app['db.options'] = array(
     'path' => realpath(ROOT_PATH . '/app.db'),
 );
 
+$app['memcached'] = 'localhost';
+
 $app['weather.base_uri'] = 'https://api.tfl.lu/v1/Weather';
 $app['weather.timeout'] = 2;
 
