@@ -52,12 +52,12 @@ class Response
         $address
     )
     {
-        $this->photo = $photo;
-        $this->desc = $desc;
-        $this->link = $link;
-        $this->name = $name;
-        $this->isOpened = $isOpened;
-        $this->address = $address;
+        $this->setPhoto($photo);
+        $this->setDesc($desc);
+        $this->setLink($link);
+        $this->setName($name);
+        $this->setIsOpened($isOpened);
+        $this->setAddress($address);
     }
 
     /**
