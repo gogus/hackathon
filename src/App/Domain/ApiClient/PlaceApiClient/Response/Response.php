@@ -25,23 +25,38 @@ class Response
      * @var string
      */
     private $link;
+    /**
+     * @var string
+     */
+    private $address;
+    /**
+     * @var string
+     */
+    private $isOpened;
 
     /**
      * Response constructor.
      * @param $photo
-     * @param $docs
+     * @param $desc
      * @param $link
+     * @param $name
+     * @param $isOpened
+     * @param $address
      */
     public function __construct(
         $photo,
         $desc,
         $link,
-        $name
+        $name,
+        $isOpened,
+        $address
     ) {
         $this->photo = $photo;
         $this->desc = $desc;
         $this->link = $link;
         $this->name = $name;
+        $this->isOpened = $isOpened;
+        $this->address = $address;
     }
 
     /**
@@ -55,7 +70,9 @@ class Response
             $data['photo'],
             '',
             $data['link'],
-            $data['name']
+            $data['name'],
+            $data['isOpened'],
+            $data['address']
         );
     }
 
@@ -126,4 +143,39 @@ class Response
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param string $address
+     * @return Response
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getIsOpened()
+    {
+        return $this->isOpened;
+    }
+
+    /**
+     * @param string $isOpened
+     * @return Response
+     */
+    public function setIsOpened($isOpened)
+    {
+        $this->isOpened = $isOpened;
+        return $this;
+    }
 }

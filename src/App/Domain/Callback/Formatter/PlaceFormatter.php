@@ -11,14 +11,16 @@ class PlaceFormatter implements FormatterInterface
     public function format($response)
     {
         $elements = [
+            [
             'title' => 'Following location does not exists'
-            ];
+            ]
+        ];
 
         if ($response->getName()) {
             $elements = [
                 [
                     'title' => 'You chosen ' . $response->getName(),
-                    'subtitle' => $response->getDesc(),
+                    'subtitle' => $response->getDesc() . $response->getIsOpen() . $response->getAddress(),
                     'image_url' => $response->getPhoto(),
                     'buttons' => [
                         [

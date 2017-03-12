@@ -22,7 +22,8 @@ class PlaceService implements ServiceInterface
     protected $placeApiClient;
 
     /**
-     * @param PlaceApiClient $bikeApiClient
+     * PlaceService constructor.
+     * @param PlaceApiClient $placeApiClient
      */
     public function __construct(PlaceApiClient $placeApiClient)
     {
@@ -58,6 +59,9 @@ class PlaceService implements ServiceInterface
      */
     private function getBikeStationByName($keyword)
     {
+        if(false === strpos($keyword, 'luxembourg')){
+            $keyword .= '%20in%20Luxembourg';
+        }
         return Response::fromArray($this->placeApiClient->makeCall("&query=".$keyword));
     }
 
@@ -66,7 +70,7 @@ class PlaceService implements ServiceInterface
      */
     private function getPlaceByCurrentLocation()
     {
-        $keyword = 'Forum Campus Geesseknappchen';
+        $keyword = 'Forum%20Campus%20Geesseknappchen';
 
         return Response::fromArray($this->placeApiClient->makeCall("&query=".$keyword));
     }
