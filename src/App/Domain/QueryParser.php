@@ -15,8 +15,10 @@ class QueryParser
         'weather' => ['weather', 'temperature', 'hot', 'cold'],
         'time'    => ['time', 'current'],
         'carpark' => ['parking', 'park', 'car'],
-        'bike'    => ['bike', 'station', 'bicycle', 'bik', 'bikepoint', 'bikestation'],
+        'bike'    => ['bike', 'station', 'bikes', 'bicycles','bicycle', 'bik', 'bikepoint', 'bikestation'],
         'journey' => ['journey', 'go', 'get', 'bus', 'way', 'route', 'train'],
+        'place'   => ['place', 'places', 'monument', 'attraction', 'attractions'],
+        'hello'   => ['hi', 'hello', 'meet', 'doing'],
     ];
 
     /**
@@ -47,6 +49,6 @@ class QueryParser
             }
         }
 
-        return self::MESSAGE_NOT_UNDERSTOOD;
+        return $this->app['service.place']->ask($query, '');
     }
 }

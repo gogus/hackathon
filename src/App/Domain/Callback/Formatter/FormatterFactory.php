@@ -4,6 +4,7 @@ namespace App\Domain\Callback\Formatter;
 
 use App\Domain\ApiClient\WeatherApiClient\Response\Response;
 use App\Domain\ApiClient\BikeApiClient\Response\Response as BikeResponse;
+use App\Domain\ApiClient\PlaceApiClient\Response\Response as PlaceResponse;
 
 /**
  * Class FormatterFactory
@@ -23,6 +24,8 @@ class FormatterFactory
             $formatter = new GenericFormatter();
         } elseif ($response instanceof BikeResponse) {
             $formatter = new BikeFormatter();
+        } elseif ($response instanceof PlaceResponse) {
+            $formatter = new PlaceFormatter();
         } else {
             $formatter = new StringFormatter();
         }

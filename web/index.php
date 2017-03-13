@@ -1,5 +1,8 @@
 <?php
 
+echo "true";
+fastcgi_finish_request();
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 define("ROOT_PATH", __DIR__ . "/..");

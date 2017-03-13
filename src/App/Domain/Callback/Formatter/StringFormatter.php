@@ -13,7 +13,7 @@ class StringFormatter implements FormatterInterface
         if ($response instanceof Response) {
             $response = sprintf(
                 "The temperature in %s is %d°C, the wind is %d m/s, humidity is %d%%, pressure is %d hPa",
-                $response->getCity()->getName(),
+                'Luxembourg',
                 $response->getMain()->getTemperature(),
                 $response->getWind()->getSpeed(),
                 $response->getMain()->getHumidity(),
@@ -25,10 +25,9 @@ class StringFormatter implements FormatterInterface
             $freeSpaces = $response->getFreeSpaces();
             if (null !== $freeSpaces && $freeSpaces > 0) {
                 $response = sprintf(
-                    'Parking spot at %s has %s free spaces of %s',
-                    $response->getName(),
+                    'Yes, there are %s spaces available at %s',
                     $freeSpaces,
-                    $response->getTotalSpaces() ? $response->getTotalSpaces() : 0
+                    $response->getName()
                 );
             } else {
                 $response = sprintf('Parking spot at %s is full', $response->getName());
