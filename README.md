@@ -18,10 +18,10 @@ Go to: `http://localhost:8080/api/v1/index`
 
 # Authors
 
-Mikolaj Gogula <mikolaj.gogula@gmail.com>
-Yuri Golikov
-Dawid Debinski
-Ionut-Mihai Sandu
+## Mikolaj Gogula <mikolaj.gogula@gmail.com>
+## Yuri Golikov
+## Dawid Debinski
+## Ionut-Mihai Sandu
 
 # License
 
