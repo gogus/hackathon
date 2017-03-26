@@ -1,6 +1,6 @@
 # Whatever API [![Build Status](https://travis-ci.com/gogus/hackathon.svg?token=aZFnXTyVrAijqxxMAS3r&branch=master)](https://travis-ci.com/gogus/hackathon)
 
-First prize of the Open Data Challenge at Game of Code Luxembourg Hackathon.
+First prize of the Open Data Challenge at Game of Code Luxembourg Hackathon. Application made in 24 hours.
 
 # Installation
 
